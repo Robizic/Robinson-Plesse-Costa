@@ -1,0 +1,126 @@
+/* RESET + TYPO */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+  color: #111;
+}
+
+/* MASQUER LE CURSEUR NATIF PARTOUT */
+* {
+  cursor: none !important;
+}
+
+/* HEADER */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: transparent;
+}
+
+.brand {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.brand a {
+  text-decoration: none;
+  color: #111;
+}
+
+.site-header a {
+  text-decoration: none;
+  color: #111;
+  font-size: 1rem;
+  margin-left: 1.5rem;
+}
+
+.slide {
+  position: relative;
+  min-height: 120vh; /* plus grand que l'écran pour scroll léger */
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  scroll-snap-align: start;
+}
+
+.slide-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ABOUT & PROJECT TEXT */
+.about-container, .project-intro {
+  padding: 6rem 2rem 2rem 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.about-container h2, .project-intro h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.about-container p, .project-intro p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.about-container a {
+  color: #111;
+  text-decoration: none;
+  border-bottom: 1px solid #111;
+}
+
+/* CURSEUR PERSONNALISÉ */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 88px;
+  height: 88px;
+  background: url('images/cursor.png') no-repeat center center;
+  background-size: contain;
+  pointer-events: none; /* permet de cliquer à travers */
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* ratio 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+/* Conteneur des slides */
+.slide {
+  position: relative;
+  height: 100vh;               /* pleine hauteur */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(0);    /* évite certains bugs de rendu */
+  will-change: background-position;
+}
