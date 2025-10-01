@@ -1,21 +1,26 @@
-/* RESET + TYPO */
+/* =======================
+   RESET + TYPO
+======================= */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist', sans-serif;
   scroll-behavior: smooth;
   color: #111;
 }
 
-/* MASQUER LE CURSEUR NATIF PARTOUT */
+/* Masquer le curseur natif partout */
 * {
   cursor: none !important;
 }
 
-/* HEADER */
+/* =======================
+   HEADER
+======================= */
+/* HEADER normal (non fixe, mais superposé en haut) */
 .site-header {
-  position: fixed;
+  position: absolute;   /* colle au haut de la page et passe par-dessus l'image */
   top: 0;
   left: 0;
   right: 0;
@@ -23,40 +28,82 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
-  background: transparent;
+  z-index: 100;         /* reste au-dessus des images */
+  background: transparent; /* pas de fond blanc */
+}
+
+/* Première image (slide) */
+.slide:first-of-type {
+  margin-top: 0;       /* supprime les marges éventuelles */
 }
 
 .brand {
+  margin-left: 0,5rem;    /* même marge que le reste du site */
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 550;
 }
 
-.brand a {
-  text-decoration: none;
-  color: #111;
-}
-
+.brand a,
 .site-header a {
   text-decoration: none;
   color: #111;
-  font-size: 1rem;
+  font-size: 1.2rem;   /* taille réelle du texte */
+  line-height: 1;      /* empêche l’espacement vertical automatique */
+  font-weight: 500;
+}
+
+.site-header nav a {
   margin-left: 1.5rem;
 }
-/* décale uniquement le nom, pas les liens "WORK" et "ABOUT" */
-.brand {
-  position: relative;      /* permet un léger décalage */
-  left: -20px;             /* valeur négative = vers la gauche */
+
+/* ===== Responsive header pour iPhone ===== */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 0.5rem 1rem;
+  }
+  .brand {
+    font-size: 0.9rem;
+    left: -10px;
+  }
+  .site-header nav a {
+    font-size: 0.9rem;
+    margin-left: 1rem;
+  }
 }
+
+/* =======================
+   SLIDES (Images plein écran)
+======================= */
 .slide {
   position: relative;
-  min-height: 120vh; /* plus grand que l'écran pour scroll léger */
+  height: 120vh;              /* pleine hauteur */
   width: 100%;
-  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  scroll-snap-align: start;
+  background-size: cover;
+  transform: translateZ(0);
+  will-change: background-position;
+  /* Fallback couleur derrière les images */
+  background-color: #000;
 }
+
+/* --- iPhone : éviter les bandes noires et garder le plein écran --- */
+@media (max-width: 768px) {
+  .slide {
+    width: 100vw;             /* largeur exacte de la fenêtre */
+    height: 120vh;            /* pleine hauteur de l’écran */
+    background-size: cover;   /* remplit l’écran (pas de bandes noires) */
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    overflow-x: hidden;       /* évite un éventuel scroll horizontal */
+  }
+}
+
 
 .slide-link {
   display: block;
@@ -64,7 +111,9 @@ html, body {
   color: inherit;
 }
 
-/* ABOUT & PROJECT TEXT */
+/* =======================
+   ABOUT & PROJECT TEXT
+======================= */
 .about-container, .project-intro {
   padding: 6rem 2rem 2rem 2rem;
   max-width: 700px;
@@ -72,14 +121,8 @@ html, body {
   text-align: left;
 }
 
-.about-container h2, .project-intro h2 {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-}
-
 .about-container p, .project-intro p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.8;
   margin-bottom: 1.5rem;
 }
@@ -89,6 +132,7 @@ html, body {
   text-decoration: none;
   border-bottom: 1px solid #111;
 }
+
 .project-intro {
   max-width: 700px;
   margin: 0 auto 0 0;
@@ -96,7 +140,22 @@ html, body {
   padding-left: 2rem;
 }
 
-/* CURSEUR PERSONNALISÉ */
+/* =======================
+   CURSEUR PERSONNALISÉ
+======================= */
+/* Curseur principal déjà existant */
+.custom-cursor {
+  position: fixed;
+  width: 88px;
+  height: 88px;
+  background: url('images/cursor.png') no-repeat center center;
+  background-size: contain;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(1,1);
+  z-index: 9999;
+  transition: transform 0.05s linear;
+}
+
 .custom-cursor {
   position: fixed;
   top: 0;
@@ -105,10 +164,18 @@ html, body {
   height: 88px;
   background: url('images/cursor.png') no-repeat center center;
   background-size: contain;
-  pointer-events: none; /* permet de cliquer à travers */
+  pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 9999;
+
+  /* inversion et transparence */
+  mix-blend-mode: difference;   /* inverse les couleurs derrière */
+  opacity: 0.9;                 /* légère transparence globale */
 }
+
+/* =======================
+   VIDEO (youtube embed)
+======================= */
 .video-container {
   position: relative;
   padding-bottom: 56.25%; /* ratio 16:9 */
@@ -124,22 +191,15 @@ html, body {
   height: 100%;
   border: 0;
 }
-/* Conteneur des slides */
-.slide {
-  position: relative;
-  height: 100vh;               /* pleine hauteur */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transform: translateZ(0);    /* évite certains bugs de rendu */
-  will-change: background-position;
-}
-/* ===== Mise en page About en grille ===== */
+
+/* =======================
+   ABOUT – Mise en page en grille
+======================= */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;      /* 2 colonnes égales */
-  grid-template-rows: auto 1fr auto;   /* 3 lignes : haut / centre / bas */
-  gap: 2rem 4rem;                      /* espace entre colonnes et lignes */
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 2rem 4rem;
   max-width: 1700px;
   margin: 6rem auto;
   padding: 2rem;
@@ -153,10 +213,22 @@ html, body {
   align-self: start;
 }
 
-/* BIO : en haut à droite (ligne du milieu de la page) */
+.contact-block a {
+  color: inherit;          /* prend la couleur du texte normal (pas bleu) */
+  text-decoration: none;   /* enlève le soulignement */
+}
+
+.contact-block li {
+  list-style: none;        /* enlève les puces ou points */
+  margin-bottom: 0.5rem;   /* petit espace entre les lignes */
+  font-weight: 400;
+}
+
+
+/* BIO : au milieu à droite */
 .bio-block {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 1;
   align-self: start;
   text-align: left;
 }
@@ -180,15 +252,17 @@ html, body {
 
 .education-block li strong {
   display: inline-block;
-  width: 110px;       /* colonne fixe pour les dates */
+  width: 110px;
   font-weight: 600;
 }
 
-/* Responsive : sur mobile, tout en colonne */
+/* --- Responsive : tout en colonne --- */
 @media (max-width: 768px) {
   .about-grid {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
+    margin: 4rem auto;
+    padding: 1rem;
   }
   .contact-block,
   .bio-block,
