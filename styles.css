@@ -1,5 +1,5 @@
 /* =======================
-   RESET + TYPO
+   RESET + TYPOGRAPHIE
 ======================= */
 html, body {
   margin: 0;
@@ -10,45 +10,36 @@ html, body {
   color: #111;
 }
 
-/* Masquer le curseur natif partout */
 * {
-  cursor: none !important;
+  cursor: none !important; /* Masque le curseur natif */
 }
 
 /* =======================
    HEADER
 ======================= */
-/* HEADER normal (non fixe, mais superposé en haut) */
 .site-header {
-  position: absolute;   /* colle au haut de la page et passe par-dessus l'image */
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem 2rem;
+  position: absolute;
+  top: 0; left: 0; right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;         /* reste au-dessus des images */
-  background: transparent; /* pas de fond blanc */
-}
-
-/* Première image (slide) */
-.slide:first-of-type {
-  margin-top: 0;       /* supprime les marges éventuelles */
+  padding: 1rem 2rem;
+  z-index: 100;
+  background: transparent;
 }
 
 .brand {
-  margin-left: 0,5rem;    /* même marge que le reste du site */
+  margin-left: 0;
   font-size: 1rem;
   font-weight: 550;
 }
 
 .brand a,
 .site-header a {
-  text-decoration: none;
   color: #111;
-  font-size: 1.2rem;   /* taille réelle du texte */
-  line-height: 1;      /* empêche l’espacement vertical automatique */
+  text-decoration: none;
+  font-size: 1.4rem;
+  line-height: 1;
   font-weight: 500;
 }
 
@@ -56,19 +47,11 @@ html, body {
   margin-left: 1.5rem;
 }
 
-/* ===== Responsive header pour iPhone ===== */
+/* --- Responsive Header --- */
 @media (max-width: 768px) {
-  .site-header {
-    padding: 0.5rem 1rem;
-  }
-  .brand {
-    font-size: 0.9rem;
-    left: -10px;
-  }
-  .site-header nav a {
-    font-size: 0.9rem;
-    margin-left: 1rem;
-  }
+  .site-header { padding: 0.5rem 1rem; }
+  .brand { font-size: 0.9rem; left: -10px; }
+  .site-header nav a { font-size: 0.9rem; margin-left: 1rem; }
 }
 
 /* =======================
@@ -76,55 +59,44 @@ html, body {
 ======================= */
 .slide {
   position: relative;
-  height: 120vh;              /* pleine hauteur */
   width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  height: 110vh;
+  background: #000 center / cover no-repeat;
   transform: translateZ(0);
   will-change: background-position;
-  /* Fallback couleur derrière les images */
-  background-color: #000;
 }
-
-/* --- iPhone : éviter les bandes noires et garder le plein écran --- */
-@media (max-width: 768px) {
-  .slide {
-    width: 100vw;             /* largeur exacte de la fenêtre */
-    height: 120vh;            /* pleine hauteur de l’écran */
-    background-size: cover;   /* remplit l’écran (pas de bandes noires) */
-    background-position: center;
-    background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    overflow-x: hidden;       /* évite un éventuel scroll horizontal */
-  }
-}
-
 
 .slide-link {
   display: block;
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
+}
+
+/* --- Responsive Slides --- */
+@media (max-width: 768px) {
+  .slide {
+    width: 100vw;
+    height: 120vh;
+  }
+  body { overflow-x: hidden; }
 }
 
 /* =======================
    ABOUT & PROJECT TEXT
 ======================= */
-.about-container, .project-intro {
-  padding: 6rem 2rem 2rem 2rem;
+.about-container,
+.project-intro {
   max-width: 700px;
   margin: 0 auto;
+  padding: 6rem 2rem 2rem;
   text-align: left;
 }
 
-.about-container p, .project-intro p {
-  font-size: 1rem;
+/* --- ABOUT --- */
+.about-container p {
+  font-size: 0rem;
   line-height: 1.8;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .about-container a {
@@ -133,99 +105,180 @@ html, body {
   border-bottom: 1px solid #111;
 }
 
+/* --- PROJECT INTRO --- */
+.project-intro h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.project-intro p {
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.5rem;
+}
+
+/* Correction : textes de projet bien alignés à gauche */
 .project-intro {
   max-width: 700px;
-  margin: 0 auto 0 0;
+  margin: 0 auto 0 0;  /* colle à gauche */
   text-align: left;
-  padding-left: 2rem;
+  padding-left: 2rem;  /* légère marge interne à gauche */
 }
+
+
+/* =======================
+   EDUCATION & EXHIBITION
+======================= */
+.education,
+.exhibition {
+  font-size: 0.85rem;
+  line-height: 1;
+  margin-top: 1rem;
+  opacity: 0.9;
+}
+
+.education h3,
+.exhibition h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.6rem;
+}
+
+.education p,
+.exhibition p {
+  margin: 0;
+  padding: 0;
+}
+/* =======================
+   EXHIBITION BLOCK STYLE
+======================= */
+.exhibition-block ul {
+  list-style: none;       /* enlève les puces */
+  padding: 0;
+  margin: 0;
+}
+
+.exhibition-block li {
+  margin-bottom: 0.6rem;  /* espace entre les lignes */
+  line-height: 1;
+}
+
+/* petit espace entre la date (en <strong>) et le texte */
+.exhibition-block li strong {
+  display: inline-block;
+  width: 4.5em;           /* largeur fixe pour aligner les dates */
+  font-weight: 600;
+}
+
 
 /* =======================
    CURSEUR PERSONNALISÉ
 ======================= */
-/* Curseur principal déjà existant */
 .custom-cursor {
   position: fixed;
-  width: 88px;
-  height: 88px;
-  background: url('images/cursor.png') no-repeat center center;
-  background-size: contain;
+  top: 0; left: 0;
+  width: 88px; height: 88px;
   pointer-events: none;
-  transform: translate(-50%, -50%) scale(1,1);
   z-index: 9999;
-  transition: transform 0.05s linear;
+  background: url('images/cursor-inv.png') no-repeat center / contain;
+  transform: translate(-50%, -50%) scale(1);
+  mix-blend-mode: difference;
+  opacity: 0.9;
+  transition: transform 0.06s linear, background-image 0.18s ease, opacity 0.12s;
 }
 
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 88px;
-  height: 88px;
-  background: url('images/cursor.png') no-repeat center center;
-  background-size: contain;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
+/* --- États de drapeau --- */
+.custom-cursor.flag-en {
+  background-image: url('images/cursor-en.png');
+  mix-blend-mode: normal;
+  opacity: 1;
+}
 
-  /* inversion et transparence */
-  mix-blend-mode: difference;   /* inverse les couleurs derrière */
-  opacity: 0.9;                 /* légère transparence globale */
+.custom-cursor.flag-fr {
+  background-image: url('images/cursor-fr.png');
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+/* --- Easter Egg : Curseur qui grossit --- */
+.custom-cursor.cursor-big1 { transform: translate(-50%, -50%) scale(1.8); }
+.custom-cursor.cursor-big2 { transform: translate(-50%, -50%) scale(3); }
+.custom-cursor.cursor-big3 { transform: translate(-50%, -50%) scale(6); }
+
+/* --- Responsive Cursor --- */
+@media (max-width: 768px) {
+  .custom-cursor { width: 64px; height: 64px; }
 }
 
 /* =======================
-   VIDEO (youtube embed)
+   VIDEO (YouTube Embed)
 ======================= */
 .video-container {
   position: relative;
-  padding-bottom: 56.25%; /* ratio 16:9 */
+  padding-bottom: 56.25%; /* 16:9 */
   height: 0;
   overflow: hidden;
 }
 
 .video-container iframe {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   height: 100%;
   border: 0;
 }
 
 /* =======================
-   ABOUT – Mise en page en grille
+   ABOUT GRID LAYOUT
 ======================= */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr auto;
-  gap: 2rem 4rem;
+  gap: 1rem 1rem;
   max-width: 1700px;
   margin: 6rem auto;
   padding: 2rem;
   line-height: 1.6;
 }
 
-/* CONTACT : en haut à gauche */
+/* --- CONTACT BLOCK --- */
 .contact-block {
   grid-column: 1;
   grid-row: 1;
   align-self: start;
+  text-align: left;         /* aligne tout le texte à gauche */
+  justify-self: start;      /* aligne le bloc lui-même à gauche dans la grille */
+  margin-left: 0;           /* évite tout décalage éventuel */
 }
 
-.contact-block a {
-  color: inherit;          /* prend la couleur du texte normal (pas bleu) */
-  text-decoration: none;   /* enlève le soulignement */
+.contact-block ul {
+  list-style: none;         /* supprime les puces */
+  padding: 0;
+  margin: 0;
 }
 
 .contact-block li {
-  list-style: none;        /* enlève les puces ou points */
-  margin-bottom: 0.5rem;   /* petit espace entre les lignes */
+  margin-bottom: 0.5rem;
   font-weight: 400;
+  text-align: left;         /* garde le texte bien ferré à gauche */
 }
 
+.contact-block a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent; /* ligne discrète */
+  transition: border-color 0.2s ease;
+}
 
-/* BIO : au milieu à droite */
+.contact-block a:hover {
+  border-color: currentColor; /* effet subtil au survol */
+}
+
+/* --- BIO BLOCK --- */
 .bio-block {
   grid-column: 2;
   grid-row: 1;
@@ -233,7 +286,7 @@ html, body {
   text-align: left;
 }
 
-/* EDUCATION : en bas à gauche */
+/* --- EDUCATION BLOCK --- */
 .education-block {
   grid-column: 1;
   grid-row: 3;
@@ -242,8 +295,8 @@ html, body {
 
 .education-block ul {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .education-block li {
@@ -256,7 +309,7 @@ html, body {
   font-weight: 600;
 }
 
-/* --- Responsive : tout en colonne --- */
+/* --- Responsive Grid --- */
 @media (max-width: 768px) {
   .about-grid {
     grid-template-columns: 1fr;
@@ -264,6 +317,7 @@ html, body {
     margin: 4rem auto;
     padding: 1rem;
   }
+
   .contact-block,
   .bio-block,
   .education-block {

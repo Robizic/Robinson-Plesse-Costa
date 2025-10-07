@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projet 1 — Ton Nom</title>
+  <title>Projet 1 — Robinson Plesse-Costa</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    body.lang-fr .lang-en { display: none; }
+    body.lang-en .lang-fr { display: none; }
+  </style>
 </head>
-<body>
+<body class="lang-fr">
   <!-- Curseur personnalisé -->
   <div class="custom-cursor"></div>
-<div class="cursor-trail"></div>
+  <div class="cursor-trail"></div>
 
   <header class="site-header">
     <h1 class="brand"><a href="index.html">ROBINSON PLESSE-COSTA</a></h1>
@@ -22,14 +27,28 @@
 
   <main>
     <!-- Intro du projet -->
-    <section class="project-intro">
-      <h2>Erreur système</h2>
-      <p>
+    <section class="project-intro translatable-text">
+      <h2 class="lang-fr">ERREUR SYSTÈME</h2>
+      <h2 class="lang-en">SYSTEM ERROR</h2>
+
+      <p class="lang-fr">
         Je travaille à partir de formes géométriques : spirales, circuits, réseaux, tuyaux, boyaux, typologie qui fait autant référence au corps qu’à la machine. 
         Ces formes sont le plus souvent agencées de manière rangée et protocolaire, à l’aide d’une grille. 
         Ce mode opératoire rigoureux m’aide à composer mes images, à structurer et à catégoriser les éléments qui y figurent. 
-        Cette année, mon travail a consisté à déjouer ce système pour le faire dérailler.J’invoque la perte de contrôle à travers l'imaginaire d’une salle des machines à l’abandon, dont il ne reste que des vestiges, fantômes d’une activité que l’on ne peut imaginer autrefois que délirante. Machines poussées à l’extrême, débordantes, échappant à leurs fonctions premières jusqu’au chaos technique, signant la fin du monde. 
+        Cette année, mon travail a consisté à déjouer ce système pour le faire dérailler.  
+        J’invoque la perte de contrôle à travers l'imaginaire d’une salle des machines à l’abandon, dont il ne reste que des vestiges, fantômes d’une activité que l’on ne peut imaginer autrefois que délirante.  
+        Machines poussées à l’extrême, débordantes, échappant à leurs fonctions premières jusqu’au chaos technique, signant la fin du monde.  
         Nanomètres à zéro, cadrans cassés, voyants inertes, interfaces silencieuses : je traduis ainsi ce dysfonctionnement, qui s’exprime à la fois graphiquement et techniquement.
+      </p>
+
+      <p class="lang-en">
+        I work with geometric forms: spirals, circuits, networks, pipes, viscera—a typology that refers as much to the body as to the machine.  
+        These forms are most often arranged in an orderly and procedural way, using a grid.  
+        This rigorous method helps me compose my images, structure them, and categorize the elements that appear.  
+        This year, my work has been about disrupting this system to make it derail.  
+        I invoke the idea of loss of control through the imagery of an abandoned engine room, where only remnants remain—ghosts of an activity that one can only imagine was once delirious.  
+        Machines pushed to the extreme, overflowing, escaping their primary functions until technical chaos arises, marking the end of the world.  
+        Nanometers at zero, broken dials, inert indicators, silent interfaces: I translate this dysfunction, which expresses itself both graphically and technically.
       </p>
     </section>
 
@@ -48,5 +67,6 @@
 
   <script src="cursor.js"></script>
   <script src="parallax.js"></script>
+  <script src="lang.cursor.js"></script>
 </body>
 </html>

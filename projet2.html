@@ -3,16 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projet 1 — Ton Nom</title>
+  <title>Projet 2 — Robinson Plesse-Costa</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    body.lang-fr .lang-en { display: none; }
+    body.lang-en .lang-fr { display: none; }
+  </style>
 </head>
-<body>
-    <!-- Curseur personnalisé -->
+<body class="lang-fr">
+  <!-- Curseur personnalisé -->
   <div class="custom-cursor"></div>
-<div class="cursor-trail"></div>
-  
+  <div class="cursor-trail"></div>
+
   <header class="site-header">
     <h1 class="brand"><a href="index.html">ROBINSON PLESSE-COSTA</a></h1>
     <nav>
@@ -22,10 +27,17 @@
 
   <main>
     <!-- Intro du projet -->
-    <section class="project-intro">
-      <h2>Normal Again</h2>
-      <p>
+    <section class="project-intro translatable-text">
+      <h2 class="lang-fr">NORMAL AGAIN</h2>
+      <h2 class="lang-en">NORMAL AGAIN</h2>
+
+      <p class="lang-fr">
         Court métrage expérimental réalisé sur Blender sur tv cathodique pour une exposition collective au Doc en janvier 2024.
+        </span>
+      </p>
+
+      <p class="lang-en">
+        Experimental short film made in Blender on a cathode-ray TV for a group exhibition at Doc in January 2024.
       </p>
     </section>
 
@@ -39,20 +51,23 @@
     <section class="slide" style="background-image: url('images/projet2-7.jpg');"></section>
     <section class="slide" style="background-image: url('images/projet2-8.jpg');"></section>
     <section class="slide" style="background-image: url('images/projet2-9.jpg');"></section>
+ 
+    <!-- Vidéo YouTube -->
+    <div class="video-container">
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/NDZFAhTejGE?t=6s"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
   </main>
+
   <script src="cursor.js"></script>
   <script src="parallax.js"></script>
-
+  <script src="lang.cursor.js"></script>
 </body>
 </html>
-<div class="video-container">
-  <iframe
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/NDZFAhTejGE&t=6s"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen>
-  </iframe>
-</div>
