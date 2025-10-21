@@ -1,14 +1,28 @@
 <!doctype html>
 <html lang="fr">
 <head>
+  <!-- META SEO -->
+<meta name="description" content="Portfolio de Robinson Plesse-Costa, artiste explorant l'image imprimée et les technologies numériques. Gravure, impression, 3D, installation.">
+<meta name="keywords" content="Robinson Plesse-Costa, artiste, art imprimé, ENSAD, gravure, image imprimée, portfolio, art contemporain, 3D, Blender, installation, impression, lithographie, estampe">
+<meta name="author" content="Robinson Plesse-Costa">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Robinson Plesse-Costa — Portfolio">
+<meta property="og:description" content="Artiste en image imprimée, entre gravure traditionnelle et technologies numériques.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://robizic.github.io/Robinson-Plesse-Costa/index.html">
+<meta property="og:image" content="https://tonpseudo.github.io/images/preview.jpg">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ROBINSON PLESSE-COSTA</title>
 
-  <!-- Police Inter pour le texte -->
+  <!-- Optimisation du chargement des polices -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <!-- CSS chargé en priorité -->
+  <link rel="stylesheet" href="styles.css" media="all">
 </head>
 <body>
   <!-- Curseur personnalisé -->
@@ -34,7 +48,7 @@
     <a href="projet8.html" class="slide-link">
       <section class="slide" style="background-image: url('images/projet8.jpg');"></section>
     </a>
-        <a href="projet6.html" class="slide-link">
+    <a href="projet6.html" class="slide-link">
       <section class="slide" style="background-image: url('images/projet6.jpg');"></section>
     </a>
     <a href="projet3.html" class="slide-link">
@@ -50,8 +64,9 @@
       <section class="slide" style="background-image: url('images/projet4.jpg');"></section>
     </a>
   </main>
-<script src="cursor.js"></script>
-<script src="parallax.js"></script>
+
+  <!-- Scripts en defer pour ne pas bloquer le rendu -->
+  <script src="cursor.js" defer></script>
+  <script src="parallax.js" defer></script>
 </body>
 </html>
-
