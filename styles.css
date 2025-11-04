@@ -107,7 +107,7 @@ html, body {
 
 /* --- PROJECT INTRO --- */
 .project-intro h2 {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 1rem;
 }
@@ -121,10 +121,15 @@ html, body {
 
 /* Correction : textes de projet bien alignés à gauche */
 .project-intro {
-  max-width: 700px;
-  margin: 0 auto 0 0;  /* colle à gauche */
+max-width: 100%;
+  width: 100%;
+  margin-top: 5rem;   /* marge très fine en haut */
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  padding: 0 2rem;      /* espace latéral, optionnel */
   text-align: left;
-  padding-left: 2rem;  /* légère marge interne à gauche */
+  box-sizing: border-box;
 }
 
 
@@ -152,6 +157,15 @@ html, body {
   margin: 0;
   padding: 0;
 }
+/* Réduit uniquement la taille du texte dans les sections Éducation et Expositions */
+.education-block p,
+.education-block li,
+.exhibition-block p,
+.exhibition-block li {
+  font-size: 0.9rem; /* ajuste selon ton goût : 0.85rem, 0.9rem, etc. */
+  line-height: 1.4;
+}
+
 /* =======================
    EXHIBITION BLOCK STYLE
 ======================= */
