@@ -23,7 +23,7 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   z-index: 100;
   background: transparent;
 }
@@ -127,7 +127,7 @@ max-width: 100%;
   margin-right: 0;
   margin-bottom: 0;
   margin-left: 0;
-  padding: 0 2rem;      /* espace latéral, optionnel */
+  padding: 0 1rem;      /* espace latéral, optionnel */
   text-align: left;
   box-sizing: border-box;
 }
@@ -249,15 +249,23 @@ max-width: 100%;
    ABOUT GRID LAYOUT
 ======================= */
 .about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr auto;
-  gap: 1rem 1rem;
-  max-width: 1700px;
-  margin: 6rem auto;
-  padding: 2rem;
-  line-height: 1.6;
+  display: grid; /* Transforme le conteneur en grille */
+  
+  grid-template-columns: 1fr 1fr; /* 2 colonnes de largeur égale. Change le nombre ou les fractions si besoin */
+  
+  grid-template-rows: auto 1fr auto; /* 3 lignes : auto (hauteur du contenu), 1fr (prend tout l’espace restant), auto */
+  
+  gap: 1rem 1rem; /* Espace entre les lignes (1er chiffre) et les colonnes (2e chiffre) */
+  
+  max-width: 1700px; /* Largeur maximale du conteneur */
+  
+  margin: 6rem auto; /* 6rem en haut et en bas, centré horizontalement */
+  
+  padding: 1rem; /* Espace intérieur autour du contenu */
+  
+  line-height: 1.6; /* Hauteur de ligne du texte pour la lisibilité */
 }
+
 
 /* --- CONTACT BLOCK --- */
 .contact-block {
