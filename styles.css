@@ -15,19 +15,22 @@ html, body {
 }
 
 /* =======================
-   HEADER
+   HEADER (DESKTOP)
 ======================= */
 .site-header {
-  position: absolute;
-  top: 0; left: 0; right: 0;
+  position: absolute; /* ✅ PAS FIXE EN DESKTOP */
+  top: 0; 
+  left: 0; 
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
-  z-index: 100;
+  z-index: 1000;
   background: transparent;
 }
 
+/* TYPO */
 .brand {
   margin-left: 0;
   font-size: 1rem;
@@ -43,15 +46,111 @@ html, body {
   font-weight: 500;
 }
 
+/* Lien actif */
+.active-page {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* NAV DESKTOP */
 .site-header nav a {
   margin-left: 1.5rem;
 }
 
-/* --- Responsive Header --- */
+/* =======================
+   HAMBURGER BUTTON
+======================= */
+.menu-toggle {
+  display: none; /* caché sur desktop */
+  background: none;
+  border: none;
+  font-size: 2.8rem;
+  cursor: pointer;
+  margin-left: auto;
+  line-height: 1;
+  padding: 0.25rem 0.35rem;
+  color: #111;
+  z-index: 1100;
+}
+
+/* =======================
+   MOBILE MENU (FLOTTANT)
+======================= */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 5rem; 
+  right: 1.5rem;
+  text-align: right;
+  z-index: 1001;
+}
+
+.mobile-menu a {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-size: 1.6rem;
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu a:hover {
+  opacity: 0.6;
+}
+
+/* Overlay flou */
+.menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.4);
+  z-index: 900;
+}
+
+.menu-overlay.active {
+  display: block;
+}
+
+/* =======================
+   VERSION MOBILE
+======================= */
 @media (max-width: 768px) {
-  .site-header { padding: 0.5rem 1rem; }
-  .brand { font-size: 0.9rem; left: -10px; }
-  .site-header nav a { font-size: 0.9rem; margin-left: 1rem; }
+
+  /* MASQUER NOM + NAV */
+  .brand,
+  .site-header nav {
+    display: none;
+  }
+
+  /* AFFICHER HAMBURGER */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* MENU ACTIF */
+  .mobile-menu.active {
+    display: block;
+  }
+
+  /* ✅ HEADER FIXE EN MOBILE */
+  .site-header {
+    position: fixed;
+    background: transparent;
+  }
+
+  /* ✅ Cacher tous les curseurs custom en mobile */
+  .custom-cursor,
+  .cursor-fr,
+  .cursor-en,
+  .cursor-trail {
+    display: none !important;
+  }
+  
 }
 
 /* =======================

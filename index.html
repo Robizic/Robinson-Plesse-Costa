@@ -70,10 +70,20 @@
 
   <header class="site-header">
     <h1 class="brand"><a href="index.html">ROBINSON PLESSE-COSTA</a></h1>
-    <nav>
-      <a href="about.html">ABOUT</a>
-    </nav>
-  </header>
+    <nav class="main-nav">
+  <a href="about.html">ABOUT</a>
+</nav>
+  <!-- Bouton hamburger (visible sur mobile uniquement) -->
+  <button class="menu-toggle" aria-label="Ouvrir le menu">
+    ☰
+  </button>
+  <!-- Menu mobile (affiché quand on clique sur le bouton) -->
+  <div class="mobile-menu" aria-hidden="true">
+  <a href="index.html" class="active-page">Homepage</a>
+  <a href="about.html">About</a>
+</div>
+</header>
+<div class="menu-overlay"></div>
 
   <main>
     <a href="projet1.html" class="slide-link">
@@ -105,5 +115,27 @@
   <!-- Scripts en defer pour ne pas bloquer le rendu -->
   <script src="cursor.js" defer></script>
   <script src="parallax.js" defer></script>
+
+<script>
+  const menuBtn = document.querySelector('.menu-toggle');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const overlay = document.querySelector('.menu-overlay'); // <--- nouvelle ligne
+
+  menuBtn.addEventListener('click', () => {
+    const isActive = mobileMenu.classList.toggle('active');
+    mobileMenu.setAttribute('aria-hidden', !isActive);
+    overlay.classList.toggle('active', isActive); // <--- active le flou
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+      if (mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        overlay.classList.remove('active'); // <--- retire le flou
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      }
+    }
+  });
+</script>
 </body>
 </html>

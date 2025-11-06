@@ -25,7 +25,20 @@
         <a href="about.html"></a></li>
       </ul>
     </nav>
+    </nav>
+  <!-- Bouton hamburger (visible sur mobile uniquement) -->
+  <button class="menu-toggle" aria-label="Ouvrir le menu">
+    ☰
+  </button>
+  <!-- Menu mobile (affiché quand on clique sur le bouton) -->
+  <div class="mobile-menu" aria-hidden="true">
+<a href="index.html">Homepage</a>
+<a href="about.html" class="active-page">About</a>
+</div>
   </header>
+
+  <!-- ✅ Obligatoire pour le flou -->
+<div class="menu-overlay"></div>
 
   <main class="about-grid">
     <!-- CONTACT en haut à gauche -->
@@ -102,8 +115,29 @@
         <li><strong>2022</strong> La Passerelle de l’Art Fair, at the Bastille Design Center, Paris, FR</li>
         <li><strong>2021</strong> Chaos, group exhibition at the Ménil’8 gallery, Paris, FR</li>
   </main>
+<script>
+  const menuBtn = document.querySelector('.menu-toggle');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const overlay = document.querySelector('.menu-overlay');
 
+  menuBtn.addEventListener('click', () => {
+    const isActive = mobileMenu.classList.toggle('active');
+    mobileMenu.setAttribute('aria-hidden', !isActive);
+    overlay.classList.toggle('active', isActive);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+      if (mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      }
+    }
+  });
+</script>
   <script src="cursor.js"></script>
   <script src="lang.cursor.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
