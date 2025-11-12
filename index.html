@@ -87,28 +87,60 @@
 
   <main>
     <a href="projet1.html" class="slide-link">
-      <section class="slide" style="background-image: url('images/projet1.jpg');"></section>
-    </a>
+  <section class="slide" style="background-image: url('images/projet1.jpg');">
+    <div class="mobile-img-wrapper">
+      <img src="images/projet1.jpg" alt="">
+    </div>
+  </section>
+</a>
     <a href="projet2.html" class="slide-link">
-      <section class="slide" style="background-image: url('images/projet2.jpg');"></section>
-    </a>
-    <a href="projet8.html" class="slide-link">
-      <section class="slide" style="background-image: url('images/projet8.jpg');"></section>
-    </a>
+  <section class="slide" style="background-image: url('images/projet2.jpg');">
+    <div class="mobile-img-wrapper">
+      <img src="images/projet2.jpg" alt="">
+    </div>
+  </section>
+<a href="projet8.html" class="slide-link">
+  <section class="slide" style="background-image: url('images/projet8.jpg');">
+    <div class="mobile-img-wrapper">
+      <img src="images/projet8.jpg" alt="">
+    </div>
+  </section>
+</a>
+
     <a href="projet6.html" class="slide-link">
-      <section class="slide" style="background-image: url('images/projet6.jpg');"></section>
+      <section class="slide">
+  <div class="mobile-img-wrapper">
+    <img src="images/projet6.jpg" alt="">
+  </div>
+</section>
     </a>
     <a href="projet3.html" class="slide-link">
-      <section class="slide" style="background-image: url('images/projet3.jpg');"></section>
+      <section class="slide">
+  <div class="mobile-img-wrapper">
+    <img src="images/projet3.jpg" alt="">
+  </div>
+</section>
     </a>
     <a href="projet7.html" class="slide-link">
-      <section class="slide" style="background-image: url('images/projet7.jpg');"></section>
+      <section class="slide">
+  <div class="mobile-img-wrapper">
+    <img src="images/projet7.jpg" alt="">
+  </div>
+</section>
     </a>
     <a href="projet5.html" class="slide-link">
-      <section class="slide" style="background-image: url('images/projet5.jpg');"></section>
+      <section class="slide">
+  <div class="mobile-img-wrapper">
+    <img src="images/projet5.jpg" alt="">
+  </div>
+</section>
     </a>
     <a href="projet4.html" class="slide-link">
-      <section class="slide" style="background-image: url('images/projet4.jpg');"></section>
+      <section class="slide">
+  <div class="mobile-img-wrapper">
+    <img src="images/projet4.jpg" alt="">
+  </div>
+</section>
     </a>
   </main>
 
@@ -137,5 +169,16 @@
     }
   });
 </script>
+<script>
+if (window.innerWidth <= 768) {
+  document.querySelectorAll('.slide').forEach(slide => {
+    const imgSrc = slide.dataset.img;
+    if (imgSrc) {
+      slide.innerHTML = `<img src="${imgSrc}" class="mobile-img">`;
+    }
+  });
+}
+</script>
+
 </body>
 </html>

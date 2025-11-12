@@ -1,3 +1,8 @@
+/* Added global mobile margin variable */
+:root {
+  --mobile-margin: 0.2rem;
+}
+
 /* =======================
    RESET + TYPOGRAPHIE
 ======================= */
@@ -150,7 +155,7 @@ html, body {
   .cursor-trail {
     display: none !important;
   }
-  
+
   .menu-overlay {
   display: none;
   position: fixed;
@@ -168,33 +173,159 @@ html, body {
 
   z-index: 900;
 }
+@media (max-width: 768px) {
+
+  .slide {
+    background-size: contain !important;   /* montre l’image en entier */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #000;                /* remplit l'espace autour de l’image */
+    width: 100vw;
+    height: 100vh;                         /* l’image entre dans l’écran */
+    margin: 0;
+    padding: 0;
+  }
+  /* MOBILE : images 100% largeur et sans espace entre les slides */
+@media (max-width: 768px) {
+
+  .slide {
+    background: none !important;  /* désactive le background-image */
+    padding: 0;
+    margin: 0;
+    height: auto;                 /* hauteur automatique = plus de bandes noires */
+  }
+
+  .mobile-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
 }
 
 /* =======================
-   SLIDES (Images plein écran)
+   MOBILE – réduire textes ABOUT + PROJETS
 ======================= */
-.slide {
-  position: relative;
-  width: 100%;
-  height: 110vh;
-  background: #000 center / cover no-repeat;
-  transform: translateZ(0);
-  will-change: background-position;
+@media (max-width: 768px) {
+
+    /* Corriger la grille pour le mobile */
+  .about-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+    margin-top: 4.5rem; /* pour éviter que ça touche le header */
+  }
+
+  /* CONTACT en premier */
+  .contact-block {
+    order: 1;
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+  .contact-block li {
+    font-size: 0.75rem;
+  }
+
+  /* BIO en second */
+  .bio-block {
+    order: 2;
+  }
+  .bio-block p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  /* EXHIBITION en troisième */
+  .exhibition-block {
+    order: 3;
+  }
+  .exhibition-block ul li {
+    font-size: 0.7rem;
+    line-height: 1.3;
+  }
+
+  /* EDUCATION en quatrième */
+  .education-block {
+    order: 4;
+  }
+  .education-block ul li {
+    font-size: 0.7rem;
+    line-height: 1.3;
+  }
+  
+  /* ----- PROJETS ----- */
+  .project-intro p,
+  .project-intro .lang-fr,
+  .project-intro .lang-en {
+    font-size: 0.65rem;
+    line-height: 1.2;
+  }
+
+  .project-intro h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+
+  /* ----- ABOUT : BIO ----- */
+  .bio-block p {
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
+
+  /* ----- EDUCATION + EXHIBITION ----- */
+  .education-block ul li,
+  .exhibition-block ul li {
+    font-size: 0.7rem;
+    line-height: 1.2;
+  }
+
+  .education-block h3,
+  .exhibition-block h3 {
+    font-size: 1rem; /* titres lisibles mais pas énormes */
+  }
 }
 
-.slide-link {
-  display: block;
-  color: inherit;
-  text-decoration: none;
 }
 
-/* --- Responsive Slides --- */
+/* =======================
+   IMAGES : Desktop vs Mobile
+======================= */
+
+/* --- Desktop --- */
+@media (min-width: 769px) {
+  .slide {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;   /* ✅ occupe tout l’écran, rogne si besoin */
+    background-color: #000;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-img-wrapper {
+    display: none;
+  }
+}
+
+/* --- Mobile --- */
 @media (max-width: 768px) {
   .slide {
-    width: 100vw;
-    height: 120vh;
+    background: none !important; /* supprime le background-image */
+    height: auto;
+    margin: 0.1rem;              /* ✅ fine marge ajustable entre les images */
+    padding: 0;
   }
-  body { overflow-x: hidden; }
+
+  .mobile-img-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;                  /* supprime toute marge parasite */
+  }
 }
 
 /* =======================
@@ -461,5 +592,40 @@ max-width: 100%;
   .education-block {
     grid-column: 1;
     text-align: left;
+  }
+}
+
+/* ============================
+      VERSION MOBILE IMAGES
+   ============================ */
+@media (max-width: 768px) {
+
+  /* Désactive le background pour ne pas cropper */
+  .slide {
+    background: none !important;
+    height: auto;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Génère une image interne automatiquement */
+  .slide::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: attr(data-ar); /* si tu veux ajouter ça plus tard */
+  }
+
+  /* Style générique pour les images mobile */
+  .mobile-img-wrapper {
+    width: 100%;
+    margin: 0rem 0;   /* ✅ marge ultra fine modifiable */
+  }
+
+  .mobile-img-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 }
