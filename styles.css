@@ -69,13 +69,18 @@ html, body {
   display: none; /* caché sur desktop */
   background: none;
   border: none;
-  font-size: 2.8rem;
+  font-size: 2.8rem;          /* taille du bouton conservée */
   cursor: pointer;
   margin-left: auto;
   line-height: 1;
-  padding: 0.25rem 0.35rem;
+  padding: 0rem 0rem;
   color: #111;
   z-index: 1100;
+
+  /* ✅ rapproché du bord droit */
+  position: relative;
+  right: 0rem;
+  top: 0rem;
 }
 
 /* =======================
@@ -84,15 +89,15 @@ html, body {
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 5rem; 
-  right: 1.5rem;
+  top: 6rem;          /* ✅ rapproché du haut */
+  right: 0.8rem;      /* ✅ rapproché du bord droit */
   text-align: right;
   z-index: 1001;
 }
 
 .mobile-menu a {
   display: block;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5rem;  /* léger resserrement vertical */
   font-size: 1.6rem;
   color: #111;
   text-decoration: none;
@@ -104,7 +109,9 @@ html, body {
   opacity: 0.6;
 }
 
-/* Overlay flou */
+/* =======================
+   OVERLAY FLOU
+======================= */
 .menu-overlay {
   display: none;
   position: fixed;
@@ -120,6 +127,7 @@ html, body {
 .menu-overlay.active {
   display: block;
 }
+
 
 /* =======================
    VERSION MOBILE
@@ -214,7 +222,7 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    padding: 1rem;
+    padding: 0.4rem;
     margin-top: 4.5rem; /* pour éviter que ça touche le header */
   }
 
@@ -264,7 +272,7 @@ html, body {
   }
 
   .project-intro h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 600;
   }
 
@@ -584,7 +592,7 @@ max-width: 100%;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     margin: 4rem auto;
-    padding: 1rem;
+    padding: 0.4rem;
   }
 
   .contact-block,
