@@ -65,23 +65,40 @@ html, body {
 /* =======================
    HAMBURGER BUTTON
 ======================= */
+:root {
+  --hamburger-bar-height: 3px; /* ← change cette valeur pour modifier l'épaisseur */
+  --hamburger-bar-width: 30px; /* largeur des barres */
+  --hamburger-bar-spacing: 7px; /* espace entre les barres */
+  --hamburger-bar-color: #111;  /* couleur des barres */
+}
+
 .menu-toggle {
   display: none; /* caché sur desktop */
   background: none;
   border: none;
-  font-size: 2.8rem;          /* taille du bouton conservée */
+  font-size: 2.8rem; /* taille du bouton conservée */
   cursor: pointer;
   margin-left: auto;
   line-height: 1;
   padding: 0rem 0rem;
-  color: #111;
+  color: var(--hamburger-bar-color);
   z-index: 1100;
 
-  /* ✅ rapproché du bord droit */
   position: relative;
   right: 0rem;
   top: 0rem;
 }
+
+/* Barres du hamburger */
+.menu-toggle span {
+  display: block;
+  width: var(--hamburger-bar-width);
+  height: var(--hamburger-bar-height);
+  background-color: var(--hamburger-bar-color);
+  margin: var(--hamburger-bar-spacing) 0;
+  transition: all 0.3s ease;
+}
+
 
 /* =======================
    MOBILE MENU (FLOTTANT)
