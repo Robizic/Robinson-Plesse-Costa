@@ -13,6 +13,7 @@ html, body {
   font-family: 'Geist', sans-serif;
   scroll-behavior: smooth;
   color: #111;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 * {
