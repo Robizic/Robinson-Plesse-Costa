@@ -308,7 +308,7 @@ html, body {
 
   /* ----- TITRE PROJET ----- */
   .project-intro h2 {
-    font-size: 1.4rem;   /* ↓ plus petit qu’avant */
+    font-size: 2.2rem;   /* ↓ plus petit qu’avant */
     margin-bottom: 0.45rem;
     line-height: 1.2;
   }
@@ -317,7 +317,7 @@ html, body {
   .project-intro p,
   .project-intro .lang-fr,
   .project-intro .lang-en {
-    font-size: 0.55rem;  /* ↓ texte lisible mais clairement réduit */
+    font-size: 0.75rem;  /* ↓ texte lisible mais clairement réduit */
     line-height: 1.25;
     margin-bottom: 0.5rem;
   }
