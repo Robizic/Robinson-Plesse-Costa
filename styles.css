@@ -161,17 +161,18 @@ a    { color: inherit; text-decoration: none; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  :root {
-    --img-pad-x: 4vw;
-    --proj-gap:  10vh;
-    --caption-gap: 1.6rem;
+  .header-right {
+    display: none;
   }
 
-  .header-right { display: none; }
-  .menu-toggle  { display: flex; }
-  .mobile-nav   { display: flex; }
-}
+  .menu-toggle {
+    display: flex !important;
+  }
 
+  .mobile-nav {
+    display: flex;
+  }
+}
 /* ============================================================
    PROJECTS FEED
 ============================================================ */
