@@ -1,27 +1,18 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<!-- META SEO -->
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Robinson Plesse-Costa, Artiste en image imprimée & technologies numériques</title>
-
-<!-- DESCRIPTION & MOTS-CLÉS -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Robinson Plesse-Costa — Artiste en image imprimée & technologies numériques</title>
 <meta name="description" content="Robinson Plesse-Costa, artiste basé à Paris, explore l'image imprimée et les technologies numériques.">
-<meta name="keywords" content="Robinson Plesse-Costa, artiste, ENSAD, École Estienne, gravure, image imprimée, art contemporain, impression, lithographie, estampe, 3D, Blender, édition, fanzine, installation, Paris">
 <meta name="author" content="Robinson Plesse-Costa">
 <meta name="robots" content="index, follow">
-
-<!-- OPEN GRAPH (pour aperçu réseaux et référencement visuel) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Robinson Plesse-Costa">
-<meta property="og:description" content="Artiste basé à Paris, spécialisé dans les images imprimées & technologies numériques">
 <meta property="og:url" content="https://robizic.github.io/Robinson-Plesse-Costa/">
 <meta property="og:image" content="https://robizic.github.io/Robinson-Plesse-Costa/images/preview.jpg">
-
-<!-- CANONICAL URL -->
 <link rel="canonical" href="https://robizic.github.io/Robinson-Plesse-Costa/">
+<<<<<<< HEAD
 
 <!-- FAVICON -->
 <link rel="icon" href="/images/favicon.png" type="image/png">
@@ -53,144 +44,1102 @@
 
 <!-- POLICE & CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+=======
+<link rel="icon" href="/images/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+>>>>>>> 6de754e (new site)
 <link rel="stylesheet" href="styles.css">
-
-  <!-- Optimisation du chargement des polices -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <!-- CSS chargé en priorité -->
-  <link rel="stylesheet" href="styles.css" media="all">
-  
-  <!-- Icon site -->
-  <link rel="icon" type="image/png" href="/favicon.png">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
 </head>
 <body>
-  <!-- Curseur personnalisé -->
-  <div class="custom-cursor"></div>
-  <div class="cursor-fr"></div>
-  <div class="cursor-en"></div>
-  <div class="cursor-trail"></div>
 
-  <header class="site-header">
-    <h1 class="brand"><a href="index.html">ROBINSON PLESSE-COSTA</a></h1>
-    <nav class="main-nav">
-  <a href="about.html">ABOUT</a>
-</nav>
-  <!-- Bouton hamburger (visible sur mobile uniquement) -->
-  <button class="menu-toggle" aria-label="Ouvrir le menu">
-  <span></span>
-  <span></span>
-  <span></span>
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="site-header">
+  <a href="#" class="brand active-page">ROBINSON PLESSE-COSTA</a>
+  <nav class="header-right">
+    <a href="shop.html">SHOP</a>
+    <a href="#about">ABOUT</a>
+  </nav>
+  <!-- Hamburger mobile — 3 barres -->
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
   </button>
-  <!-- Menu mobile (affiché quand on clique sur le bouton) -->
-  <div class="mobile-menu" aria-hidden="true">
-  <a href="index.html" class="active-page">Homepage</a>
-  <a href="about.html">About</a>
-</div>
 </header>
-<div class="menu-overlay"></div>
 
-  <main>
-    <a href="projet1.html" class="slide-link">
-  <section class="slide" style="background-image: url('images/projet1.jpg');">
-    <div class="mobile-img-wrapper">
-      <img src="images/projet1.jpg" alt="">
-    </div>
-  </section>
-</a>
-    <a href="projet2.html" class="slide-link">
-  <section class="slide" style="background-image: url('images/projet2.jpg');">
-    <div class="mobile-img-wrapper">
-      <img src="images/projet2.jpg" alt="">
-    </div>
-  </section>
-</a>
-<a href="projet8.html" class="slide-link">
-  <section class="slide" style="background-image: url('images/projet8.jpg');">
-    <div class="mobile-img-wrapper">
-      <img src="images/projet8.jpg" alt="">
-    </div>
-  </section>
-</a>
-<a href="projet6.html" class="slide-link">
-  <section class="slide" style="background-image: url('images/projet6.jpg');">
-    <div class="mobile-img-wrapper">
-      <img src="images/projet6.jpg" alt="">
-    </div>
-  </section>
-</a>
-<a href="projet3.html" class="slide-link">
-  <section class="slide" style="background-image: url('images/projet3.jpg');">
-    <div class="mobile-img-wrapper">
-      <img src="images/projet3.jpg" alt="">
-    </div>
-  </section>
-</a>
-    <a href="projet7.html" class="slide-link">
-  <section class="slide" style="background-image: url('images/projet7.jpg');">
-    <div class="mobile-img-wrapper">
-      <img src="images/projet7.jpg" alt="">
-    </div>
-  </section>
-</a>
-    <a href="projet5.html" class="slide-link">
-  <section class="slide" style="background-image: url('images/projet5.jpg');">
-    <div class="mobile-img-wrapper">
-      <img src="images/projet5.jpg" alt="">
-    </div>
-  </section>
-</a>
-    <a href="projet4.html" class="slide-link">
-  <section class="slide" style="background-image: url('images/projet4.jpg');">
-    <div class="mobile-img-wrapper">
-      <img src="images/projet4.jpg" alt="">
-    </div>
-  </section>
-</a>
-  </main>
+<!-- Menu mobile -->
+<nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <a href="#" class="active-page">home</a>
+  <a href="shop.html">shop</a>
+  <a href="#about" class="nav-anchor">about</a>
+</nav>
 
-  <!-- Scripts en defer pour ne pas bloquer le rendu -->
-  <script src="cursor.js" defer></script>
-  <script src="parallax.js" defer></script>
+<!-- ═══════════ PROJETS ═══════════ -->
+<main class="projects-feed">
 
+  <!-- ─────────── PROJET 1 — Erreur Système ─────────── -->
+  <article class="project">
+    <div class="project-slider">
+      <div class="slider-track">
+
+        <figure class="slide">
+          <img src="images/projet1.jpg" alt="Erreur Système">
+          <figcaption>
+            <span class="cap-title"><em>Erreur Système</em>, 2025</span>
+            <span class="cap-info">Installation — ENSAD Paris<br>Matrices gravées, tissage, sculptures, images imprimées</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet1-2.jpg" alt="Erreur Système">
+          <figcaption>
+            <span class="cap-title"><em>Erreur Système</em>, 2025</span>
+            <span class="cap-info">Vue d'installation</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet1-3.jpg" alt="Erreur Système">
+          <figcaption>
+            <span class="cap-title"><em>Erreur Système</em>, 2025</span>
+            <span class="cap-info">Détail</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet1-4.jpg" alt="Erreur Système">
+          <figcaption>
+            <span class="cap-title"><em>Erreur Système</em>, 2025</span>
+            <span class="cap-info">Détail</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet1-5.jpg" alt="Erreur Système">
+          <figcaption>
+            <span class="cap-title"><em>Erreur Système</em>, 2025</span>
+            <span class="cap-info">Dessin préparatoire</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet1-6.jpg" alt="Erreur Système">
+          <figcaption>
+            <span class="cap-title"><em>Erreur Système</em>, 2025</span>
+            <span class="cap-info">Accrochage 25 sérigraphies imprimées en bleu de prusse à partir d’une gravure, 45 x 60 cm chacune, 2025.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet1-8.jpg" alt="Erreur Système">
+          <figcaption>
+            <span class="cap-title"><em>Erreur Système</em>, 2025</span>
+            <span class="cap-info">Vue d'installation</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet1-9.jpg" alt="Erreur Système">
+          <figcaption>
+            <span class="cap-title"><em>Erreur Système</em>, 2025</span>
+            <span class="cap-info">Vue d'installation</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet1-10.jpg" alt="Erreur Système">
+          <figcaption>
+            <span class="cap-title"><em>Erreur Système</em>, 2025</span>
+            <span class="cap-info">Vue d'ensemble</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet1-11.jpg" alt="Erreur Système">
+          <figcaption>
+            <span class="cap-title"><em>Erreur Système</em>, 2025</span>
+            <span class="cap-info">Vue d'ensemble</span>
+          </figcaption>
+        </figure>
+
+      </div>
+      <div class="slider-counter"><span class="cur">1</span> / <span class="tot">11</span></div>
+    </div>
+  </article>
+
+  <!-- ─── PROJET 2 ─── -->
+  <article class="project">
+    <div class="project-slider" data-total="1">
+      <div class="slider-track">
+
+        <figure class="slide">
+          <img src="images/projet2.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Court métrage expérimental réalisé sur Blender, conçu pour être diffusé sur un téléviseur cathodique dans le cadre d’une exposition
+collective.</span>
+            <span class="cap-info">DOC, Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet2-1.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Extrait de la Video</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet2-2.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Extrait de la Video</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet2-3.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Extrait de la Video</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet2-4.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Extrait de la Video</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet2-4.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Extrait de la Video</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet2-5.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Extrait de la Video</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet2-6.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Extrait de la Video</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet2-7.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Extrait de la Video</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet2-8.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Extrait de la Video</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet2-9.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Extrait de la Video</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet2-10.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Extrait de la Video</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet2-11.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Extrait de la Video</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet2-12.jpg" alt="Projet 2">
+          <figcaption>
+            <span class="cap-title"><em>Normal Again</em>, 2024</span>
+            <span class="cap-info">Extrait de la Video</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+  <div class="video-wrapper">
+<iframe 
+  src="https://www.youtube-nocookie.com/embed/NDZFAhTejGE&t=414s?controls=0&modestbranding=1&rel=0"
+  title="Normal Again video"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen>
+</iframe>
+  </div>
+  <figcaption>
+    <span class="cap-title"><em>Normal Again</em>, 2024</span>
+    <span class="cap-info">Vidéo complète</span>
+    <span class="cap-info">Paris</span>
+  </figcaption>
+</figure>
+
+      </div>
+      <div class="slider-counter"><span class="cur">1</span> / <span class="tot">1</span></div>
+    </div>
+  </article>
+
+    <!-- ─── PROJET 8 ─── -->
+  <article class="project">
+    <div class="project-slider" data-total="1">
+      <div class="slider-track">
+
+        <figure class="slide">
+          <img src="images/projet8.jpg" alt="Projet 8">
+          <figcaption>
+            <span class="cap-title"><em>Tours Panoptiques</em>, 2022</span>
+            <span class="cap-info">Série de quatres eaux fortes sur cuivre, surimpréssions et papier encollé, supports en bois.</span>
+            <span class="cap-info">Extraitres du livre Point de Fuite. 8 x 12 cm</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet8-2.jpg" alt="Projet 8">
+          <figcaption>
+            <span class="cap-title"><em>Tours Panoptiques</em>, 2022</span>
+            <span class="cap-info">Série de quatres eaux fortes sur cuivre, surimpréssions et papier encollé, scan.</span>
+            <span class="cap-info">Extraitres du livre Point de Fuite. 8 x 12 cm</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet8-3.GIF" alt="Projet 8">
+          <figcaption>
+            <span class="cap-title"><em>Tours Panoptiques</em>, 2022</span>
+            <span class="cap-info">Série de quatres eaux fortes sur cuivre, surimpréssions et papier encollé, animation.</span>
+            <span class="cap-info">Extraitres du livre Point de Fuite. 8 x 12 cm</span>
+          </figcaption>
+        </figure>
+
+      </div>
+      <div class="slider-counter"><span class="cur">1</span> / <span class="tot">1</span></div>
+    </div>
+  </article>
+
+  <!-- ─── PROJET 3 ─── -->
+  <article class="project">
+    <div class="project-slider" data-total="1">
+      <div class="slider-track">
+
+        <figure class="slide">
+          <img src="images/projet3.jpg" alt="Projet 3">
+          <figcaption>
+            <span class="cap-title"><em>Panopticon City</em>, 2023</span>
+            <span class="cap-info">logiciel 3D, bois gravé en plaque perdue, 3 passages, 54 x 67 cm, </span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet3-3.jpg" alt="Projet 3">
+          <figcaption>
+            <span class="cap-title"><em>Panopticon City</em>, 2023</span>
+            <span class="cap-info">logiciel 3D, bois gravé en plaque perdue, 3 passages, 54 x 67 cm, </span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+      </div>
+      <div class="slider-counter"><span class="cur">1</span> / <span class="tot">1</span></div>
+    </div>
+  </article>
+
+    <!-- ─── PROJET 6 ─── -->
+  <article class="project">
+    <div class="project-slider" data-total="1">
+      <div class="slider-track">
+
+        <figure class="slide">
+          <img src="images/projet6.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-1.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-2.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-3.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-4.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-5.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-6.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-7.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-8.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-9.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-10.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-11.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-12.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-13.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-14.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-15.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-16.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet6-17.jpg" alt="Projet 6">
+          <figcaption>
+            <span class="cap-title"><em>Point de Fuite</em>, 2022</span>
+            <span class="cap-info">Livre mêlant gravure en taille-douce, xylographie, sérigraphie et typographie au plomb.</span>
+            <span class="cap-info">Imprimé en six exemplaires numérotés,
+dans le cadre du projet de fin d’études à
+l’École Estienne.
+D’après une interprétation de la pensée
+visionnaire de Gilles Deleuze, issue du
+Post-scriptum sur les sociétés de contrôle
+publié en mai 1990.</span>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="slider-counter"><span class="cur">1</span> / <span class="tot">1</span></div>
+    </div>
+  </article>
+
+   <!-- ─────────── PROJET 5 ─────────── -->
+  <article class="project">
+    <div class="project-slider">
+      <div class="slider-track">
+
+        <figure class="slide">
+          <img src="images/projet5.jpg" alt="Projet 5">
+          <figcaption>
+            <span class="cap-title"><em>La Maison entre les Murs</em>, 2025</span>
+            <span class="cap-info">Jeux Video expérimental.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet5-1.jpg" alt="Projet 5">
+          <figcaption>
+            <span class="cap-title"><em>La Maison entre les Murs</em>, 2025</span>
+            <span class="cap-info">Jeux Video expérimental.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet5-2.jpg" alt="Projet 5">
+          <figcaption>
+            <span class="cap-title"><em>La Maison entre les Murs</em>, 2025</span>
+            <span class="cap-info">Jeux Video expérimental.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet5-3.jpg" alt="Projet 5">
+          <figcaption>
+            <span class="cap-title"><em>La Maison entre les Murs</em>, 2025</span>
+            <span class="cap-info">Jeux Video expérimental.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet5-4.jpg" alt="Projet 5">
+          <figcaption>
+            <span class="cap-title"><em>La Maison entre les Murs</em>, 2025</span>
+            <span class="cap-info">Jeux Video expérimental.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet5-5.jpg" alt="Projet 5">
+          <figcaption>
+            <span class="cap-title"><em>La Maison entre les Murs</em>, 2025</span>
+            <span class="cap-info">Jeux Video expérimental.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet5-6.jpg" alt="Projet 5">
+          <figcaption>
+            <span class="cap-title"><em>La Maison entre les Murs</em>, 2025</span>
+            <span class="cap-info">Jeux Video expérimental.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet5-7.jpg" alt="Projet 5">
+          <figcaption>
+            <span class="cap-title"><em>La Maison entre les Murs</em>, 2025</span>
+            <span class="cap-info">Jeux Video expérimental.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet5-8.jpg" alt="Projet 5">
+          <figcaption>
+            <span class="cap-title"><em>La Maison entre les Murs</em>, 2025</span>
+            <span class="cap-info">Jeux Video expérimental.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet5-9.jpg" alt="Projet 5">
+          <figcaption>
+            <span class="cap-title"><em>La Maison entre les Murs</em>, 2025</span>
+            <span class="cap-info">Jeux Video expérimental.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet5-10.jpg" alt="Projet 5">
+          <figcaption>
+            <span class="cap-title"><em>La Maison entre les Murs</em>, 2025</span>
+            <span class="cap-info">Jeux Video expérimental.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet5-11.jpg" alt="Projet 5">
+          <figcaption>
+            <span class="cap-title"><em>La Maison entre les Murs</em>, 2025</span>
+            <span class="cap-info">Jeux Video expérimental.</span>
+          </figcaption>
+        </figure>
+        
+
+      </div>
+      <div class="slider-counter"><span class="cur">1</span> / <span class="tot">1</span></div>
+    </div>
+  </article>
+
+  <!-- ─── PROJET 7 ─── -->
+  <article class="project">
+    <div class="project-slider" data-total="1">
+      <div class="slider-track">
+
+        <figure class="slide">
+          <img src="images/projet7.jpg" alt="Projet 7">
+          <figcaption>
+            <span class="cap-title"><em>Melencolia</em>, 2024</span>
+            <span class="cap-info">Techniques mixes, risographie quadrichromie, 40 exemplaires, 29,7x42 cm,</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet7-1.jpg" alt="Projet 7">
+          <figcaption>
+            <span class="cap-title"><em>Melencolia</em>, 2024</span>
+            <span class="cap-info">Techniques mixes, risographie quadrichromie, 40 exemplaires, 29,7x42 cm,</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet7-2.jpg" alt="Projet 7">
+          <figcaption>
+            <span class="cap-title"><em>Melencolia</em>, 2024</span>
+            <span class="cap-info">Techniques mixes, risographie quadrichromie, 40 exemplaires, 29,7x42 cm,</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet7-3.jpg" alt="Projet 7">
+          <figcaption>
+            <span class="cap-title"><em>Melencolia</em>, 2024</span>
+            <span class="cap-info">Techniques mixes, risographie quadrichromie, 40 exemplaires, 29,7x42 cm,</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet7-4.jpg" alt="Projet 7">
+          <figcaption>
+            <span class="cap-title"><em>Melencolia</em>, 2024</span>
+            <span class="cap-info">Techniques mixes, risographie quadrichromie, 40 exemplaires, 29,7x42 cm,</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet7-5.jpg" alt="Projet 7">
+          <figcaption>
+            <span class="cap-title"><em>Melencolia</em>, 2024</span>
+            <span class="cap-info">Techniques mixes, risographie quadrichromie, 40 exemplaires, 29,7x42 cm,</span>
+            <span class="cap-info">Paris</span>
+          </figcaption>
+        </figure>
+
+      </div>
+      <div class="slider-counter"><span class="cur">1</span> / <span class="tot">1</span></div>
+    </div>
+  </article>
+
+   <!-- ─────────── PROJET 4 ─────────── -->
+  <article class="project">
+    <div class="project-slider">
+      <div class="slider-track">
+
+        <figure class="slide">
+          <img src="images/projet4.jpg" alt="Projet 4">
+          <figcaption>
+            <span class="cap-title"><em>Gloria Nazarenorum</em>, 2021</span>
+            <span class="cap-info">Livre sérigraphié. Recueil de
+dessins et gravures. 21 x 30 cm, 16
+pages, imprimé en trois couleurs au
+Dernier Cri.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet4-1.jpg" alt="Projet 4">
+          <figcaption>
+            <span class="cap-title"><em>Gloria Nazarenorum</em>, 2021</span>
+            <span class="cap-info">Livre sérigraphié. Recueil de
+dessins et gravures. 21 x 30 cm, 16
+pages, imprimé en trois couleurs au
+Dernier Cri.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet4-2.jpg" alt="Projet 4">
+          <figcaption>
+            <span class="cap-title"><em>Gloria Nazarenorum</em>, 2021</span>
+            <span class="cap-info">Livre sérigraphié. Recueil de
+dessins et gravures. 21 x 30 cm, 16
+pages, imprimé en trois couleurs au
+Dernier Cri.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet4-3.jpg" alt="Projet 4">
+          <figcaption>
+            <span class="cap-title"><em>Gloria Nazarenorum</em>, 2021</span>
+            <span class="cap-info">Livre sérigraphié. Recueil de
+dessins et gravures. 21 x 30 cm, 16
+pages, imprimé en trois couleurs au
+Dernier Cri.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet4-4.jpg" alt="Projet 4">
+          <figcaption>
+            <span class="cap-title"><em>Gloria Nazarenorum</em>, 2021</span>
+            <span class="cap-info">Livre sérigraphié. Recueil de
+dessins et gravures. 21 x 30 cm, 16
+pages, imprimé en trois couleurs au
+Dernier Cri.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="slide">
+          <img src="images/projet4-5.jpg" alt="Projet 4">
+          <figcaption>
+            <span class="cap-title"><em>Gloria Nazarenorum</em>, 2021</span>
+            <span class="cap-info">Livre sérigraphié. Recueil de
+dessins et gravures. 21 x 30 cm, 16
+pages, imprimé en trois couleurs au
+Dernier Cri.</span>
+          </figcaption>
+        </figure>
+        
+      </div>
+      <div class="slider-counter"><span class="cur">1</span> / <span class="tot">1</span></div>
+    </div>
+  </article>
+
+
+</main>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+
+    <div class="about-block">
+      <h3></h3>
+      <ul>
+        <li><a href="mailto:robinson.pc@outlook.fr">robinson.pc@outlook.fr</a></li>
+        <li><a href="https://www.instagram.com/robi_plesta/" target="_blank" rel="noopener">@robi_plesta</a></li>
+        <li><a href="documents/Portfolio_Robinson_Plesse-Costa.pdf" target="_blank">Portfolio PDF ↓</a></li>
+      </ul>
+    </div>
+
+    <div class="about-block about-bio">
+      <h3></h3>
+      <p>
+        Robinson Plesse-Costa est artiste spécialisé dans l'exploration des images imprimées
+        et des technologies numériques. Son travail se situe à l'intersection du traditionnel
+        et du contemporain, combinant des techniques d'impression classiques avec des outils
+        numériques comme la modélisation 3D, etc, pour créer des œuvres singulières.
+      </p>
+      <p>
+        Passionné par le processus autant que par le résultat, il interroge la matérialité
+        de l'image et la manière dont elle dialogue avec les technologies modernes.
+      </p>
+      <em>
+        Robinson Plesse-Costa is an artist specializing in printed images and digital technologies,
+        combining classical printing techniques with digital tools to create singular works.
+      </em>
+    </div>
+
+    <div class="about-block">
+      <h3>Formation</h3>
+      <ul>
+        <li><strong>2023–2025</strong> Master Images Imprimées, ENSAD, Paris</li>
+        <li><strong>2022–2023</strong> FCND, Paris</li>
+        <li><strong>2019–2022</strong> DNMADE livre, gravure, École Estienne, Paris</li>
+        <li><strong>2016–2019</strong> Bac STD2A, Lycée St Geneviève, Rennes</li>
+      </ul>
+    </div>
+
+    <div class="about-block">
+      <h3>Expositions</h3>
+      <ul>
+        <li><strong>2025</strong> <em>Baraque</em>, La Galerie Jaune, Paris</li>
+        <li><strong>2024</strong> <em>Normal Again</em>, DOC, Paris</li>
+        <li><strong>2024</strong> <em>Impression</em>, salon de l'image Imprimée, Pré Saint-Gervais</li>
+        <li><strong>2023</strong> Biennale internationale de la Gravure de Sarcelles</li>
+        <li><strong>2022</strong> <em>Salon Pages</em>, Palais de la Femme, Paris</li>
+        <li><strong>2022</strong> <em>La Passerelle de l'Art</em>, Bastille Design Center</li>
+        <li><strong>2021</strong> <em>Chaos</em>, Ménil'8, Paris</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- Curseur custom -->
+<div class="custom-cursor" id="cursor"></div>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
 <script>
-  const menuBtn = document.querySelector('.menu-toggle');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  const overlay = document.querySelector('.menu-overlay'); // <--- nouvelle ligne
+/* ══════════════════════════════════════════════
+   1. MENU HAMBURGER
+══════════════════════════════════════════════ */
+(function() {
+  const toggle = document.getElementById('menuToggle');
+  const nav    = document.getElementById('mobileNav');
 
-  menuBtn.addEventListener('click', () => {
-    const isActive = mobileMenu.classList.toggle('active');
-    mobileMenu.setAttribute('aria-hidden', !isActive);
-    overlay.classList.toggle('active', isActive); // <--- active le flou
+  function openMenu() {
+    toggle.classList.add('open');
+    nav.classList.add('open');
+    nav.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    toggle.classList.remove('open');
+    nav.classList.remove('open');
+    nav.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  toggle.addEventListener('click', () => {
+    nav.classList.contains('open') ? closeMenu() : openMenu();
   });
 
-  document.addEventListener('click', (e) => {
-    if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-      if (mobileMenu.classList.contains('active')) {
-        mobileMenu.classList.remove('active');
-        overlay.classList.remove('active'); // <--- retire le flou
-        mobileMenu.setAttribute('aria-hidden', 'true');
-      }
+  // Fermeture sur clic dans le menu
+  nav.addEventListener('click', e => {
+    if (e.target.tagName === 'A') closeMenu();
+  });
+
+  // Fermeture sur Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+  });
+})();
+
+
+/* ── SLIDERS — CLIC SUR ZONE GAUCHE/DROITE ── */
+document.querySelectorAll('.project-slider').forEach(slider => {
+  const track   = slider.querySelector('.slider-track');
+  const slides  = track.querySelectorAll('.slide');
+  const curEl   = slider.querySelector('.cur');
+  const totEl   = slider.querySelector('.tot');
+  const counter = slider.querySelector('.slider-counter');
+
+  const total = slides.length;
+  let idx = 0;
+
+  totEl.textContent = total;
+  if (total <= 1) counter.style.display = 'none';
+
+  function go(n) {
+    idx = (n + total) % total;
+    track.style.transform = `translateX(-${idx * 100}%)`;
+    curEl.textContent = idx + 1;
+  }
+
+  /* Clic sur la moitié gauche = prev, moitié droite = next */
+  slider.addEventListener('click', e => {
+    if (total <= 1) return;
+    const rect = slider.getBoundingClientRect();
+    const relX = e.clientX - rect.left;
+    if (relX < rect.width / 2) go(idx - 1);
+    else go(idx + 1);
+  });
+
+  /* Swipe tactile */
+  let startX = 0;
+  slider.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+  slider.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  /* Clavier */
+  slider.setAttribute('tabindex', '0');
+  slider.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  go(idx - 1);
+    if (e.key === 'ArrowRight') go(idx + 1);
+  });
+
+  /* Curseur : indique la direction selon la moitié survolée */
+  slider.addEventListener('mousemove', e => {
+    if (total <= 1) return;
+    const rect = slider.getBoundingClientRect();
+    const relX = e.clientX - rect.left;
+    slider.style.cursor = relX < rect.width / 2 ? 'w-resize' : 'e-resize';
+  });
+  slider.addEventListener('mouseleave', () => {
+    slider.style.cursor = '';
+  });
+});
+
+/* ══════════════════════════════════════════════
+   3. FADE-IN AU SCROLL — IntersectionObserver
+══════════════════════════════════════════════ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    } else {
+      entry.target.classList.remove('visible');
     }
   });
-</script>
-<script>
-if (window.innerWidth <= 768) {
-  document.querySelectorAll('.slide').forEach(slide => {
-    const imgSrc = slide.dataset.img;
-    if (imgSrc) {
-      slide.innerHTML = `<img src="${imgSrc}" class="mobile-img">`;
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.project').forEach(p => observer.observe(p));
+
+
+/* ══════════════════════════════════════
+   4. CURSEUR ← → dynamique
+   Affiche ← ou → selon la moitié de l'écran survolée.
+   Pas d'image externe : caractères Unicode purs.
+══════════════════════════════════════ */
+(function () {
+  var cur = document.getElementById('cursor');
+  if (!cur || !window.matchMedia('(pointer: fine)').matches) {
+    if (cur) cur.style.display = 'none';
+    return;
+  }
+
+  var mouseX = 0, mouseY = 0;
+  var onSlider = false;  /* est-on sur un slider multi-images ? */
+
+document.querySelectorAll('.project-slider').forEach(slider => {
+
+  slider.addEventListener('mousemove', function (e) {
+    var rect = slider.getBoundingClientRect();
+    var relX = e.clientX - rect.left;
+
+    /* position du curseur */
+    cur.style.left = e.clientX + 'px';
+    cur.style.top  = e.clientY + 'px';
+
+    /* afficher seulement si plusieurs slides */
+    var slides = slider.querySelectorAll('.slide');
+    if (slides.length <= 1) return;
+
+    cur.classList.add('visible');
+
+    if (relX < rect.width / 2) {
+      cur.classList.remove('dir-right'); // ←
+    } else {
+      cur.classList.add('dir-right');    // →
     }
   });
-}
+
+  // 👉 ICI exactement
+  slider.addEventListener('mouseleave', function () {
+    cur.classList.remove('visible');
+  });
+
+});
+})();
 </script>
-<div class="seo-home">
-  Robinson Plesse-Costa, artiste basé à Paris, explore l'image imprimée et les technologies numériques.
-</div>
+
+<script src="cursor.js" defer></script>
 </body>
 </html>

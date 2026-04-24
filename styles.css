@@ -1,719 +1,545 @@
-/* Added global mobile margin variable */
+/* ============================================================
+   ROBINSON PLESSE-COSTA — styles.css v4
+   Ref: ac-ca.cl — fond noir · image centrée · légende centrée ·
+   drag-to-scroll · fade-in scroll · header split
+============================================================ */
+
 :root {
-  --mobile-margin: 0.2rem;
+  --black:    #080808;
+  --white:    #d8d8d8;
+  --dim:      rgba(216, 216, 216, 0.564);
+  --muted:    rgba(216, 216, 216, 0.564);
+
+  --img-pad-x: 18vw;   /* marges latérales autour de l'image */
+  --proj-gap:  16vh;   /* espace vertical entre projets */
+  --header-h:  3.2rem;
+  --caption-gap: 2.2rem; /* espace image → légende */
 }
 
-/* =======================
-   RESET + TYPOGRAPHIE
-======================= */
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: 'Geist', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: .02em;
+  -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
-  color: #111;
-  padding-bottom: env(safe-area-inset-bottom);
+  overscroll-behavior: none;
 }
 
-* {
-  cursor: none !important; /* Masque le curseur natif */
-}
+img  { display: block; -webkit-user-drag: none; user-select: none; }
+a    { color: inherit; text-decoration: none; }
+/* Curseur normal partout par défaut */
+*    { cursor: auto; }
 
-/* =======================
-   HEADER (DESKTOP)
-======================= */
+/* Curseur masqué uniquement sur les sliders (la flèche custom prend le relais) */
+.project-slider,
+.project-slider * { cursor: none !important; }
+
+/* ============================================================
+   HEADER
+   Ref: nav en bas · ici on garde en haut mais split :
+   ROBINSON fixe à gauche, SHOP/ABOUT fixes à droite
+============================================================ */
 .site-header {
-  position: absolute; /* ✅ PAS FIXE EN DESKTOP */
-  top: 0; 
-  left: 0; 
-  right: 0;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-h);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1rem;
-  z-index: 1000;
-  background: transparent;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+  z-index: 900;
+  /* pas de fond opaque — fondu léger uniquement */
+  background: linear-gradient(to bottom,
+    rgba(8,8,8,.75) 0%,
+    transparent 100%);
+  pointer-events: none; /* on active item par item */
+
+  @media (max-width: 768px) {
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
 }
 
-/* TYPO */
 .brand {
-  margin-left: 0;
-  font-size: 1rem;
-  font-weight: 550;
-}
-
-.brand a,
-.site-header a {
-  color: #111;
-  text-decoration: none;
-  font-size: 1.4rem;
-  line-height: 1;
+  font-size: 2rem;
   font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--white);
+  pointer-events: all;
+  white-space: nowrap;
 }
 
-/* Lien actif */
-.active-page {
-  opacity: 0.5;
+.header-right {
+  display: flex;
+  gap: 2.4rem;
+  pointer-events: all;
+}
+
+.header-right a {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  transition: color .18s;
+}
+
+.header-right a:hover       { color: var(--white); }
+.header-right a.active-page { color: var(--white); pointer-events: none; }
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 2rem 0.5rem 1rem; /* 👈 top / sides / bottom */
+  z-index: 1100;
+  pointer-events: all;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 32px;
+  height: 2.8px;
+  background: var(--white);
+  transition: transform .28s ease, opacity .28s ease;
+}
+
+/* Croix quand ouvert */
+.menu-toggle.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.menu-toggle.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* ── MENU MOBILE ── */
+.mobile-nav {
+  display: none; /* géré par JS */
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  /* flou derrière */
+  backdrop-filter: blur(14px) brightness(.35);
+  -webkit-backdrop-filter: blur(14px) brightness(.35);
+  background: rgba(47, 47, 47, 0.154);
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 2.8rem;
+  gap: 1.4rem;
+  opacity: 0;
+  transition: opacity .28s ease;
   pointer-events: none;
 }
 
-/* NAV DESKTOP */
-.site-header nav a {
-  margin-left: 1.5rem;
+.mobile-nav.open {
+  opacity: 1;
+  pointer-events: all;
 }
 
-/* =======================
-   HAMBURGER BUTTON
-======================= */
-:root {
-  --hamburger-bar-height: 3px; /* ← change cette valeur pour modifier l'épaisseur */
-  --hamburger-bar-width: 30px; /* largeur des barres */
-  --hamburger-bar-spacing: 7px; /* espace entre les barres */
-  --hamburger-bar-color: #111;  /* couleur des barres */
+.mobile-nav a {
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--white);
+  transition: opacity .15s;
 }
 
-.menu-toggle {
-  display: none; /* caché sur desktop */
-  background: none;
-  border: none;
-  font-size: 2.8rem; /* taille du bouton conservée */
-  cursor: pointer;
-  margin-left: auto;
-  line-height: 1;
-  padding: 0rem 0rem;
-  color: var(--hamburger-bar-color);
-  z-index: 1100;
+.mobile-nav a.active-page { opacity: .3; pointer-events: none; }
+.mobile-nav a:hover        { opacity: .5; }
 
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  :root {
+    --img-pad-x: 4vw;
+    --proj-gap:  10vh;
+    --caption-gap: 1.6rem;
+  }
+
+  .header-right { display: none; }
+  .menu-toggle  { display: flex; }
+  .mobile-nav   { display: flex; }
+}
+
+/* ============================================================
+   PROJECTS FEED
+============================================================ */
+.projects-feed {
+  padding-top: calc(var(--header-h) + var(--proj-gap));
+  padding-bottom: var(--proj-gap);
+}
+
+/* ── ARTICLE PROJET — fade-in scroll ── */
+.project {
+  margin-bottom: var(--proj-gap);
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+
+.project.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── SLIDER ── */
+.project-slider {
   position: relative;
-  right: 0rem;
-  top: 0rem;
+  overflow: hidden;
+  padding: 0 (--img-pad-x);
+
+  /* curseur drag */
+  .project-slider,
+.project-slider * {
+  cursor: none !important;
+}
 }
 
-/* Barres du hamburger */
-.menu-toggle span {
-  display: block;
-  width: var(--hamburger-bar-width);
-  height: var(--hamburger-bar-height);
-  background-color: var(--hamburger-bar-color);
-  margin: var(--hamburger-bar-spacing) 0;
-  transition: all 0.3s ease;
-}
-
-
-/* =======================
-   MOBILE MENU (FLOTTANT)
-======================= */
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 6rem;          /* ✅ rapproché du haut */
-  right: 0.8rem;      /* ✅ rapproché du bord droit */
-  text-align: right;
-  z-index: 1001;
-}
-
-.mobile-menu a {
-  display: block;
-  margin-bottom: 0.5rem;  /* léger resserrement vertical */
-  font-size: 1.6rem;
-  color: #111;
-  text-decoration: none;
-  font-weight: 500;
-  transition: opacity 0.3s ease;
-}
-
-.mobile-menu a:hover {
-  opacity: 0.6;
-}
-
-/* =======================
-   OVERLAY FLOU
-======================= */
-.menu-overlay {
-  display: none;
-  position: fixed;
-  top: 0; 
-  left: 0;
+/* Track : pas de transition CSS — le drag est direct */
+.slider-track {
+  display: flex;
+  /* PAS de transition pour le drag direct */
+  will-change: transform;
+  touch-action: pan-y; /* laisse le scroll vertical libre */
   width: 100%;
-  height: 100%;
-  backdrop-filter: blur(6px);
-  background: rgba(255, 255, 255, 0.4);
-  z-index: 900;
 }
 
-.menu-overlay.active {
-  display: block;
+/* Transition uniquement pour les clics (pas le drag) */
+.slider-track.snapping {
+  transition: transform .0s; /* instantané */
 }
 
+/* ── SLIDE ── */
+.slide {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-/* =======================
-   VERSION MOBILE
-======================= */
-@media (max-width: 768px) {
-
-  /* MASQUER NOM + NAV */
-  .brand,
-  .site-header nav {
-    display: none;
-  }
-
-  /* AFFICHER HAMBURGER */
-  .menu-toggle {
-    display: block;
-  }
-
-  /* MENU ACTIF */
-  .mobile-menu.active {
-    display: block;
-  }
-
-  /* ✅ HEADER FIXE EN MOBILE */
-  .site-header {
-    position: fixed;
-    background: transparent;
-  }
-
-  /* ✅ Cacher tous les curseurs custom en mobile */
-  .custom-cursor,
-  .cursor-fr,
-  .cursor-en,
-  .cursor-trail {
-    display: none !important;
-  }
-
-  .menu-overlay {
-  display: none;
-  position: fixed;
-  top: 0; 
-  left: 0;
+.slide img {
   width: 100%;
-  height: 100%;
-
-  /* ✅ Safari iOS fix */
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-
-  /* ✅ important : couleur semi-transparente */
-  background: rgba(255, 255, 255, 0.4);
-
-  z-index: 900;
-}
-@media (max-width: 768px) {
-
-  .slide {
-    background-size: contain !important;   /* montre l’image en entier */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #000;                /* remplit l'espace autour de l’image */
-    width: 100vw;
-    height: 100vh;                         /* l’image entre dans l’écran */
-    margin: 0;
-    padding: 0;
-  }
-  /* MOBILE : images 100% largeur et sans espace entre les slides */
-@media (max-width: 768px) {
-
-  .slide {
-    background: none !important;  /* désactive le background-image */
-    padding: 0;
-    margin: 0;
-    height: auto;                 /* hauteur automatique = plus de bandes noires */
-  }
-
-  .mobile-img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
+  height: auto;
+  max-height: 78vh;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
 }
 
-}
-
-/* =======================
-   MOBILE – réduire textes ABOUT + PROJETS
-======================= */
-@media (max-width: 768px) {
-
-  /* 🔥 Désactiver la grille desktop pour éviter les superpositions */
-  .about-grid {
-    display: flex !important;
-    flex-direction: column;
-    gap: 1.2rem;
-    padding: 0.2rem;
-    margin-top: 4rem;
-  }
-
-  /* CONTACT (1er bloc) */
-  .contact-block {
-    order: 1;
-    font-size: 0.75rem;
-    line-height: 1.3;
-    margin: 0;
-    padding: 0 0rem;
-  }
-
-  .contact-block li {
-    font-size: 0.75rem;
-    margin-bottom: 0.35rem;
-  }
-
-  /* BIO (2e bloc) */
-  .bio-block {
-    order: 2;
-    margin: 0;
-    padding: 0 0rem;
-  }
-
-  .bio-block p {
-    font-size: 0.78rem;
-    line-height: 1.36;
-    margin-bottom: 0.6rem;
-  }
-
-  /* EXHIBITION (3e bloc) */
-  .exhibition-block {
-    order: 3;
-    margin: 0;
-    padding: 0 0rem;
-  }
-
-  .exhibition-block ul li {
-    font-size: 0.7rem;
-    line-height: 1.3;
-    margin-bottom: 0.35rem;
-  }
-
-  /* EDUCATION (4e bloc) */
-  .education-block {
-    order: 4;
-    margin: 0;
-    padding: 0 0rem;
-  }
-
-  .education-block ul li {
-    font-size: 0.7rem;
-    line-height: 1.3;
-    margin-bottom: 0.35rem;
-  }
-
-  /* ----- PROJETS : bloc complet ----- */
-  .project-intro {
-    order: 5;
-    padding: 0 0.2 !important;
-    margin: 1 !important;
-    width: 100%;
-    text-align: left;
-    box-sizing: border-box;
-  }
-
-  /* ----- TITRE PROJET ----- */
-  .project-intro h2 {
-    font-size: 3.2rem !important;
-    margin-bottom: 0.45rem;
-    line-height: 1.2;
-  }
-
-  /* ----- TEXTE PROJET ----- */
-  .project-intro p,
-  .project-intro .lang-fr,
-  .project-intro .lang-en {
-    font-size: 0.75rem;  /* ↓ texte lisible mais clairement réduit */
-    line-height: 1.25;
-    margin-bottom: 0.8rem;
-  }
-
-  /* Images mobile */
-  .slide {
-    margin: 0;
-    padding: 0;
-  }
-
-  .mobile-img-wrapper img {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0;
-    padding: 0;
-  }
-
-}
-
-}
-
-/* =======================
-   IMAGES : Desktop vs Mobile
-======================= */
-
-/* --- Desktop --- */
-@media (min-width: 769px) {
-  .slide {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;   /* ✅ occupe tout l’écran, rogne si besoin */
-    background-color: #000;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
-
-  .mobile-img-wrapper {
-    display: none;
-  }
-}
-
-/* --- Mobile --- */
-@media (max-width: 768px) {
-  .slide {
-    background: none !important; /* supprime le background-image */
-    height: auto;
-    margin: 0.1rem;              /* ✅ fine marge ajustable entre les images */
-    padding: 0;
-  }
-
-  .mobile-img-wrapper img {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0;                  /* supprime toute marge parasite */
-  }
-}
-
-/* =======================
-   ABOUT & PROJECT TEXT
-======================= */
-.about-container,
-.project-intro {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 6rem 2rem 2rem;
-  text-align: left;
-}
-
-/* --- ABOUT --- */
-.about-container p {
-  font-size: 0rem;
-  line-height: 1.8;
-  margin-bottom: 1rem;
-}
-
-.about-container a {
-  color: #111;
-  text-decoration: none;
-  border-bottom: 1px solid #111;
-}
-
-/* --- PROJECT INTRO --- */
-.project-intro h2 {
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.project-intro p {
-  font-size: 1rem;
+/* ── LÉGENDE — centrée, 3 lignes ── */
+.slide figcaption {
+  margin-top: var(--caption-gap);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
   line-height: 1.5;
-  letter-spacing: 0.01em;
-  margin-bottom: 1.5rem;
 }
 
-/* Correction : textes de projet bien alignés à gauche */
-.project-intro {
-max-width: 100%;
-  width: 100%;
-  margin-top: 5rem;   /* marge très fine en haut */
-  margin-right: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-  padding: 0 1rem;      /* espace latéral, optionnel */
-  text-align: left;
-  box-sizing: border-box;
+.cap-title {
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: var(--white);
+  opacity: .8;
+}
+.cap-title em { font-style: italic; font-weight: 300; }
+
+.cap-info {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: .05em;
 }
 
-
-/* =======================
-   EDUCATION & EXHIBITION
-======================= */
-.education,
-.exhibition {
-  font-size: 0.85rem;
-  line-height: 1;
-  margin-top: 1rem;
-  opacity: 0.9;
+/* Compteur très discret */
+.slider-counter {
+  position: absolute;
+  bottom: 0;
+  right: calc(var(--img-pad-x) - .5rem);
+  font-size: .58rem;
+  letter-spacing: .08em;
+  color: var(--muted);
+  pointer-events: none;
 }
 
-.education h3,
-.exhibition h3 {
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.6rem;
+/* ============================================================
+   ABOUT — en bas de la page
+============================================================ */
+.about-section {
+  border-top: 1px solid #181818;
+  padding: calc(var(--proj-gap) * .7) var(--img-pad-x) var(--proj-gap);
 }
 
-.education p,
-.exhibition p {
-  margin: 0;
-  padding: 0;
-}
-/* Réduit uniquement la taille du texte dans les sections Éducation et Expositions */
-.education-block p,
-.education-block li,
-.exhibition-block p,
-.exhibition-block li {
-  font-size: 0.9rem; /* ajuste selon ton goût : 0.85rem, 0.9rem, etc. */
-  line-height: 1.4;
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.8rem 6rem;
+  max-width: 100%;   /* pas de max-width restrictif */
 }
 
-/* =======================
-   EXHIBITION BLOCK STYLE
-======================= */
-.exhibition-block ul {
-  list-style: none;       /* enlève les puces */
-  padding: 0;
-  margin: 0;
+.about-block h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
 }
 
-.exhibition-block li {
-  margin-bottom: 0.6rem;  /* espace entre les lignes */
-  line-height: 1;
+.about-block p,
+.about-block li {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(216,216,216,.6);
+  line-height: 1.8;
+  margin-bottom: .4rem;
 }
 
-/* petit espace entre la date (en <strong>) et le texte */
-.exhibition-block li strong {
+.about-block ul  { list-style: none; }
+
+.about-block a {
+  border-bottom: 1px solid #2a2a2a;
+  transition: border-color .18s, color .18s;
+}
+.about-block a:hover { color: var(--white); border-color: #666; }
+
+.about-block strong {
+  white-space: nowrap;
   display: inline-block;
-  width: 4.5em;           /* largeur fixe pour aligner les dates */
-  font-weight: 600;
+  min-width: 6rem;
+  font-weight: 400;
+  color: rgba(216,216,216,.4);
+  display: inline-block;
+  width: 4.2rem;
+  font-size: 1rem;
+}
+
+.about-bio em {
+  display: block;
+  margin-top: 1rem;
+  color: var(--muted);
+  font-style: italic;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .about-section { padding: 5vh var(--img-pad-x) 8vh; }
+  .about-grid    { grid-template-columns: 1fr; gap: 2.2rem; }
 }
 
 
-/* =======================
-   CURSEUR PERSONNALISÉ
-======================= */
+/* ============================================================
+   CURSEUR CUSTOM — flèches ← → en CSS pur
+============================================================ */
 .custom-cursor {
   position: fixed;
   top: 0; left: 0;
-  width: 88px; height: 88px;
   pointer-events: none;
   z-index: 9999;
-  background: url('images/cursor-inv.png') no-repeat center / contain;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%);
+  will-change: left, top;
+  /* Texte flèche — taille et couleur */
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--white);
   mix-blend-mode: difference;
-  opacity: 0.9;
-  transition: transform 0.06s linear, background-image 0.18s ease, opacity 0.12s;
+  opacity: 0;
+  transition: opacity .15s;
+  white-space: nowrap;
+  line-height: 1;
 }
 
-/* --- États de drapeau --- */
-.custom-cursor.flag-en {
-  background-image: url('images/cursor-en.png');
-  mix-blend-mode: normal;
-  opacity: 1;
-}
+.custom-cursor.visible { opacity: 1; }
 
-.custom-cursor.flag-fr {
-  background-image: url('images/cursor-fr.png');
-  mix-blend-mode: normal;
-  opacity: 1;
-}
+/* Flèche gauche */
+.custom-cursor::before  { content: '←'; }
+/* Flèche droite — masquée par défaut */
+.custom-cursor::after   { content: '→'; display: none; }
 
-/* --- Easter Egg : Curseur qui grossit --- */
-.custom-cursor.cursor-big1 { transform: translate(-50%, -50%) scale(1.8); }
-.custom-cursor.cursor-big2 { transform: translate(-50%, -50%) scale(3); }
-.custom-cursor.cursor-big3 { transform: translate(-50%, -50%) scale(6); }
+/* Classe ajoutée par JS selon moitié droite/gauche */
+.custom-cursor.dir-right::before { display: none; }
+.custom-cursor.dir-right::after  { display: inline; }
 
-/* --- Responsive Cursor --- */
 @media (max-width: 768px) {
-  .custom-cursor { width: 64px; height: 64px; }
+  .custom-cursor { display: none; }
 }
 
-/* =======================
-   VIDEO (YouTube Embed)
-======================= */
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-  overflow: hidden;
+/* ============================================================
+   SHOP PAGE
+============================================================ */
+
+.shop-overlay {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 800; /* 👈 IMPORTANT (plus bas que le header) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.video-container iframe {
-  position: absolute;
-  top: 0; left: 0;
+.shop-overlay img {
   width: 100%;
   height: 100%;
-  border: 0;
+  object-fit: contain; /* 👈 clé du responsive */
+  object-position: center;
 }
 
-/* =======================
-   ABOUT GRID LAYOUT
-======================= */
-.about-grid {
-  display: grid; /* Transforme le conteneur en grille */
-  
-  grid-template-columns: 1fr 1fr; /* 2 colonnes de largeur égale. Change le nombre ou les fractions si besoin */
-  
-  grid-template-rows: auto 1fr auto; /* 3 lignes : auto (hauteur du contenu), 1fr (prend tout l’espace restant), auto */
-  
-  gap: 1rem 1rem; /* Espace entre les lignes (1er chiffre) et les colonnes (2e chiffre) */
-  
-  max-width: 1700px; /* Largeur maximale du conteneur */
-  
-  margin: 6rem auto; /* 6rem en haut et en bas, centré horizontalement */
-  
-  padding: 1rem; /* Espace intérieur autour du contenu */
-  
-  line-height: 1.6; /* Hauteur de ligne du texte pour la lisibilité */
+.shop-wrap {
+  padding: calc(var(--header-h) + 7vh) 4vw 10vh;
+  width: 90%;
+  margin: 0 auto; /* 👈 centre horizontalement */
 }
 
+.shop-head        { margin-bottom: 6vh; }
 
-/* --- CONTACT BLOCK --- */
-.contact-block {
-  grid-column: 1;
-  grid-row: 1;
-  align-self: start;
-  text-align: left;         /* aligne tout le texte à gauche */
-  justify-self: start;      /* aligne le bloc lui-même à gauche dans la grille */
-  margin-left: 0;           /* évite tout décalage éventuel */
+.shop-head h2 {
+  font-size: .58rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .9rem;
 }
 
-.contact-block ul {
-  list-style: none;         /* supprime les puces */
-  padding: 0;
-  margin: 0;
+.shop-head p {
+  font-size: .78rem;
+  font-weight: 300;
+  color: rgba(216,216,216,.45);
+  line-height: 1.8;
+  max-width: 400px;
 }
 
-.contact-block li {
-  margin-bottom: 0.5rem;
-  font-weight: 400;
-  text-align: left;         /* garde le texte bien ferré à gauche */
+.shop-head a { border-bottom: 1px solid #333; transition: border-color .18s; }
+.shop-head a:hover { border-color: var(--white); color: var(--white); }
+
+.shop-section      { margin-bottom: 7vh; }
+
+.shop-section-label {
+  font-size: .55rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: .6rem;
+  margin-bottom: 2.8rem;
 }
 
-.contact-block a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid transparent; /* ligne discrète */
-  transition: border-color 0.2s ease;
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem 3rem; /* un peu plus d’air */
 }
 
-.contact-block a:hover {
-  border-color: currentColor; /* effet subtil au survol */
+.shop-item { display: flex; flex-direction: column; }
+
+.shop-img {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #111;
+  margin-bottom: .85rem;
 }
 
-/* --- BIO BLOCK --- */
-.bio-block {
-  grid-column: 2;
-  grid-row: 1;
-  align-self: start;
-  text-align: left;
+.shop-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease, opacity .3s;
 }
+.shop-item:hover .shop-img img { transform: scale(1.04); opacity: .82; }
 
-/* --- EDUCATION BLOCK --- */
-.education-block {
-  grid-column: 1;
-  grid-row: 3;
-  align-self: end;
-}
-
-.education-block ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.education-block li {
-  margin-bottom: 0.8rem;
-}
-
-.education-block li strong {
-  display: inline-block;
-  width: 85px;
-  font-weight: 600;
-}
-
-/* --- Responsive Grid --- */
-@media (max-width: 768px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    margin: 4rem auto;
-    padding: 0.4rem;
-  }
-
-  .contact-block,
-  .bio-block,
-  .education-block {
-    grid-column: 1;
-    text-align: left;
-  }
-}
-
-/* ============================
-      VERSION MOBILE IMAGES
-   ============================ */
-@media (max-width: 768px) {
-
-  /* Désactive le background pour ne pas cropper */
-  .slide {
-    background: none !important;
-    height: auto;
-    padding: 0;
-    margin: 0;
-  }
-
-  /* Génère une image interne automatiquement */
-  .slide::before {
-    content: "";
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: attr(data-ar); /* si tu veux ajouter ça plus tard */
-  }
-
-  /* Style générique pour les images mobile */
-  .mobile-img-wrapper {
-    width: 100%;
-    margin: 0rem 0;   /* ✅ marge ultra fine modifiable */
-  }
-
-  .mobile-img-wrapper img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-}
-.seo-home {
+.shop-badge {
   position: absolute;
-  left: -9999px; 
-  opacity: 0;
+  bottom: .6rem; left: .6rem;
+  font-size: .52rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: rgba(8,8,8,.88);
+  color: var(--white);
+  padding: .2rem .45rem;
 }
 
-/* =======================
-   FIX PROJETS — MOBILE PRIORITÉ
-======================= */
+.shop-item-title {
+  font-size: .78rem;
+  font-style: italic;
+  color: var(--white);
+  opacity: .82;
+  margin-bottom: .2rem;
+}
+
+.shop-item-meta {
+  font-size: .62rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: .7rem;
+}
+
+.shop-item-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.shop-price { font-size: .78rem; font-weight: 400; color: var(--white); }
+
+.shop-link {
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--white);
+  border-bottom: 1px solid #3a3a3a;
+  padding-bottom: 1px;
+  transition: opacity .18s;
+}
+.shop-link:hover    { opacity: .4; }
+.shop-link.sold-out { color: #3a3a3a; border-color: #2a2a2a; pointer-events: none; }
+
+.shop-note {
+  margin-top: 5vh;
+  padding-top: 1.8rem;
+  border-top: 1px solid #181818;
+  font-size: .65rem;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 400px;
+}
+
 @media (max-width: 768px) {
-
-  /* -------- Bloc projet -------- */
-  .project-intro {
-    padding-left: 0.4rem !important;
-    padding-right: 0.4rem !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    width: 100% !important;
+  .shop-grid { grid-template-columns: repeat(2,1fr); gap: 2rem .8rem; }
+}
+@media (max-width: 768px) {
+  .projects-feed {
+    padding-left: 2vw;
+    padding-right: 2vw;
   }
+<<<<<<< HEAD
+=======
+}
 
-  /* -------- Titre projet -------- */
-  .project-intro h2 {
-    font-size: 3.4rem !important; /* ← augmente ici */
-    font-weight: 600;
-    line-height: 1.15;
-    margin-bottom: 0.6rem;
-  }
+.video-wrapper {
+  width: 50%;
+  max-height: 88vh;
+  aspect-ratio: 16 / 9;
+}
 
-  /* -------- Texte projet -------- */
-  .project-intro p,
-  .project-intro .lang-fr,
-  .project-intro .lang-en {
-    font-size: 0.75rem !important;
-    line-height: 1.3;
-  }
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: contain;
+>>>>>>> 6de754e (new site)
 }
