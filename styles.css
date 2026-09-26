@@ -10,7 +10,7 @@
   --dim:      rgba(216, 216, 216, 0.564);
   --muted:    rgba(216, 216, 216, 0.564);
 
-  --img-pad-x: 18vw;   /* marges latérales autour de l'image */
+  --img-pad-x: 10vw;   /* marges latérales autour de l'image */
   --proj-gap:  16vh;   /* espace vertical entre projets */
   --header-h:  3.2rem;
   --caption-gap: 2.2rem; /* espace image → légende */
@@ -159,7 +159,7 @@ a    { color: inherit; text-decoration: none; }
   }
 
   .brand {
-    font-size: 1rem;
+    font-size: 2rem;
     letter-spacing: .12em;
     max-width: calc(100% - 60px);
     overflow: hidden;
@@ -353,8 +353,14 @@ a    { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 768px) {
-  .about-section { padding: 5vh var(--img-pad-x) 8vh; }
-  .about-grid    { grid-template-columns: 1fr; gap: 2.2rem; }
+  .about-section {
+    padding: 5vh 4vw 8vh;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+  }
 }
 
 

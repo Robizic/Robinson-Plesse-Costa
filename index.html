@@ -1005,10 +1005,11 @@ Dernier Cri.</span>
   });
 
   // Fermeture sur clic dans le menu
-  nav.addEventListener('click', e => {
-    if (e.target.tagName === 'A') closeMenu();
-  });
-
+nav.addEventListener('click', e => {
+  if (e.target === nav || e.target.tagName === 'A') {
+    closeMenu();
+  }
+});
   // Fermeture sur Escape
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeMenu();
