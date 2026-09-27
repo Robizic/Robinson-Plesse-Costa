@@ -363,7 +363,20 @@ a    { color: inherit; text-decoration: none; }
   }
 }
 
+/* ============================================================
+   TRAÎNÉE PIXEL DU CURSEUR
+============================================================ */
 
+#cursor-trail {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+
+  pointer-events: none;
+
+  z-index: 9998;
+}
 /* ============================================================
    CURSEUR CUSTOM — flèches ← → en CSS pur
 ============================================================ */
@@ -375,7 +388,7 @@ a    { color: inherit; text-decoration: none; }
   transform: translate(-50%, -50%);
   will-change: left, top;
   /* Texte flèche — taille et couleur */
-  font-size: 1.6rem;
+  font-size: 2.4rem;
   font-weight: 300;
   color: var(--white);
   mix-blend-mode: difference;

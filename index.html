@@ -972,6 +972,9 @@ Dernier Cri.</span>
   </div>
 </section>
 
+<!-- Traînée pixel du curseur -->
+<canvas id="cursor-trail"></canvas>
+
 <!-- Curseur custom -->
 <div class="custom-cursor" id="cursor"></div>
 
@@ -1135,6 +1138,403 @@ document.querySelectorAll('.project-slider').forEach(slider => {
   });
 
 });
+})();
+/* ============================================================
+   TRAÎNÉE PIXEL — PLEIN ÉCRAN
+============================================================ */
+
+(function () {
+
+  const canvas = document.getElementById('cursor-trail');
+
+  if (!canvas) return;
+
+  /* Pas de traînée sur mobile / tactile */
+  if (!window.matchMedia('(pointer: fine)').matches) {
+    canvas.style.display = 'none';
+    return;
+  }
+
+  /* IMPORTANT :
+     Le canvas ne doit JAMAIS intercepter la souris.
+  */
+  canvas.style.pointerEvents = 'none';
+
+  const ctx = canvas.getContext('2d');
+
+  let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+
+
+  /* ==========================================================
+     CANVAS PLEIN ÉCRAN
+  ========================================================== */
+
+  function resizeCanvas() {
+
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  resizeCanvas();
+
+  window.addEventListener('resize', resizeCanvas);
+
+
+  /* ==========================================================
+     PALETTE
+  ========================================================== */
+
+const colors = [
+  '#FF1744',
+  '#FF6D00',
+  '#FFD600',
+  '#76FF03',
+  '#00E676',
+  '#00E5FF',
+  '#2979FF',
+  '#651FFF',
+  '#D500F9',
+  '#FF4081'
+];
+
+  /* ==========================================================
+     PARTICULES
+  ========================================================== */
+
+  const particles = [];
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+
+  /*
+     Position de la traînée.
+     Elle suit le curseur avec un léger retard.
+  */
+  let trailX = mouseX;
+  let trailY = mouseY;
+
+  let previousX = null;
+  let previousY = null;
+
+
+  /* ==========================================================
+     RÉGLAGES
+  ========================================================== */
+
+  /*
+     ESPACE ENTRE LE CURSEUR ET LA TRAÎNÉE
+     
+     18 = léger espace
+     25 = espace plus important
+     10 = très proche
+  */
+  const cursorGap = 18;
+
+
+  /*
+     RETARD DE LA TRAÎNÉE
+
+     Plus petit = plus de retard
+     Plus grand = plus proche du curseur
+  */
+  const trailDelay = 0.13;
+
+
+  /*
+     DISTANCE ENTRE LES PIXELS
+
+     Plus petit = traînée plus dense
+     Plus grand = traînée plus espacée
+  */
+  const spacing = 7;
+
+
+  /* ==========================================================
+     CRÉATION D'UN PIXEL
+  ========================================================== */
+
+  function createParticle(x, y) {
+
+    /*
+       TAILLE DES PIXELS
+
+       Ici : environ 7 à 12 px
+    */
+    const size = Math.random() * 5 + 7;
+
+    particles.push({
+
+      x: Math.round(x),
+      y: Math.round(y),
+
+      size: Math.round(size),
+
+      color:
+        colors[
+          Math.floor(Math.random() * colors.length)
+        ],
+
+      life: 1,
+
+      /*
+         Durée de vie
+      */
+      decay: 0.018 + Math.random() * 0.012,
+
+      /*
+         Très léger mouvement
+      */
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: (Math.random() - 0.5) * 0.15
+    });
+  }
+
+
+  /* ==========================================================
+     CRÉATION DE LA TRAÎNÉE
+  ========================================================== */
+
+  function createTrail(x, y) {
+
+    /*
+       Première position
+    */
+    if (previousX === null || previousY === null) {
+
+      previousX = x;
+      previousY = y;
+
+      return;
+    }
+
+
+    const dx = x - previousX;
+    const dy = y - previousY;
+
+    const distance = Math.sqrt(
+      dx * dx + dy * dy
+    );
+
+
+    if (distance < 1) return;
+
+
+    /*
+       Direction du déplacement
+    */
+    const directionX = dx / distance;
+    const directionY = dy / distance;
+
+
+    /*
+       On termine la trajectoire légèrement
+       avant le curseur.
+    */
+    const endX = x - directionX * cursorGap;
+    const endY = y - directionY * cursorGap;
+
+
+    const trailDx = endX - previousX;
+    const trailDy = endY - previousY;
+
+    const trailDistance = Math.sqrt(
+      trailDx * trailDx +
+      trailDy * trailDy
+    );
+
+
+    if (trailDistance < 1) return;
+
+
+    /*
+       Nombre de pixels à créer
+    */
+    const steps = Math.max(
+      1,
+      Math.floor(trailDistance / spacing)
+    );
+
+
+    for (let i = 1; i <= steps; i++) {
+
+      const progress = i / steps;
+
+      const px =
+        previousX + trailDx * progress;
+
+      const py =
+        previousY + trailDy * progress;
+
+
+      /*
+         Petite variation organique
+      */
+      if (Math.random() > 0.15) {
+        createParticle(px, py);
+      }
+    }
+
+
+    /*
+       Nouvelle position de départ
+    */
+    previousX = endX;
+    previousY = endY;
+  }
+
+
+  /* ==========================================================
+     SOURIS — TOUT L'ÉCRAN
+  ========================================================== */
+
+  document.addEventListener('mousemove', function (e) {
+
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+  });
+
+
+  /* ==========================================================
+     ANIMATION DE LA TRAÎNÉE
+     
+     IMPORTANT :
+     On ne dépend plus de mousemove pour faire avancer
+     la traînée.
+
+     Cela permet à la traînée de fonctionner partout,
+     indépendamment des éléments HTML traversés.
+  ========================================================== */
+
+  function updateTrail() {
+
+    /*
+       La traînée suit progressivement le curseur.
+    */
+    trailX += (mouseX - trailX) * trailDelay;
+    trailY += (mouseY - trailY) * trailDelay;
+
+
+    /*
+       Création de la traînée
+    */
+    createTrail(trailX, trailY);
+
+
+    requestAnimationFrame(updateTrail);
+  }
+
+  updateTrail();
+
+
+  /* ==========================================================
+     ANIMATION DES PARTICULES
+  ========================================================== */
+
+  function animate() {
+
+    /*
+       Efface uniquement le canvas,
+       jamais la page.
+    */
+    ctx.clearRect(
+      0,
+      0,
+      width,
+      height
+    );
+
+
+    for (
+      let i = particles.length - 1;
+      i >= 0;
+      i--
+    ) {
+
+      const p = particles[i];
+
+
+      /*
+         Vieillissement
+      */
+      p.life -= p.decay;
+
+
+      /*
+         Petit mouvement
+      */
+      p.x += p.vx;
+      p.y += p.vy;
+
+
+      /*
+         Suppression
+      */
+      if (p.life <= 0) {
+
+        particles.splice(i, 1);
+
+        continue;
+      }
+
+
+      /*
+         Transparence progressive
+      */
+      ctx.globalAlpha = p.life;
+
+
+      ctx.fillStyle = p.color;
+
+
+      /*
+         Pixel parfaitement carré
+      */
+      ctx.fillRect(
+        Math.round(p.x),
+        Math.round(p.y),
+        p.size,
+        p.size
+      );
+    }
+
+
+    ctx.globalAlpha = 1;
+
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+
+  /* ==========================================================
+     NETTOYAGE QUAND LA FENÊTRE PERD LE FOCUS
+  ========================================================== */
+
+  window.addEventListener('blur', function () {
+
+    particles.length = 0;
+
+    previousX = null;
+    previousY = null;
+
+  });
+
+
 })();
 </script>
 
