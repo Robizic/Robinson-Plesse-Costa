@@ -159,7 +159,7 @@ a    { color: inherit; text-decoration: none; }
   }
 
   .brand {
-    font-size: 2rem;
+    font-size: 1.2rem;
     letter-spacing: .12em;
     max-width: calc(100% - 60px);
     overflow: hidden;
@@ -308,8 +308,8 @@ a    { color: inherit; text-decoration: none; }
 }
 
 .about-block h3 {
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.4rem;
+  font-weight: 600;
   letter-spacing: .2em;
   text-transform: uppercase;
   color: var(--muted);
@@ -320,7 +320,7 @@ a    { color: inherit; text-decoration: none; }
 .about-block li {
   font-size: 1rem;
   font-weight: 300;
-  color: rgba(216,216,216,.6);
+  color: rgba(216,216,216,.95);
   line-height: 1.8;
   margin-bottom: .4rem;
 }
@@ -338,7 +338,7 @@ a    { color: inherit; text-decoration: none; }
   display: inline-block;
   min-width: 6rem;
   font-weight: 400;
-  color: rgba(216,216,216,.4);
+  color: rgba(216,216,216,.6);
   display: inline-block;
   width: 4.2rem;
   font-size: 1rem;
