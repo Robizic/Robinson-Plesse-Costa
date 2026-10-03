@@ -32,167 +32,80 @@
 
 <main>
 
-  <div class="shop-overlay">
-  <img src="images/coming-soon.jpg" alt="Coming soon">
-</div>
-
-  <div class="shop-wrap">
+  <div class="shop-wrap" data-shop-only>
 
     <div class="shop-head">
+      <div class="lang-switch">
+        <button type="button" class="lang-opt" data-setlang="fr">FR</button>
+        <button type="button" class="lang-toggle" id="langSwitch" role="switch" aria-checked="false" data-i18n-label="switchLabel"><span class="lang-knob"></span></button>
+        <button type="button" class="lang-opt" data-setlang="en">EN</button>
+      </div>
       <h2>Shop</h2>
-      <p>
-        Tirages originaux en édition limitée, numérotés et signés.<br>
-        Contact : <a href="mailto:robinson.pc@outlook.fr">robinson.pc@outlook.fr</a><br>
-        <em style="font-style:italic;color:var(--muted)">Original prints, numbered and hand-signed.</em>
-      </p>
+      <p data-i18n-html="headIntro">Tirages originaux en édition limitée, numérotés et signés.<br>Contact : <a href="mailto:robinson.pc@outlook.fr">robinson.pc@outlook.fr</a></p>
     </div>
 
-    <div class="shop-section">
-      <p class="shop-section-label"></p>
-      <div class="shop-grid">
+    <div id="shopRoot"></div>
+    <noscript><p class="shop-note">JavaScript requis pour commander / JavaScript is required to order. Contact : <a href="mailto:robinson.pc@outlook.fr">robinson.pc@outlook.fr</a></p></noscript>
 
-        <div class="shop-item">
-          <div class="shop-img">
-            <img src="images/shop-gravure-1.jpg" alt="">
-            <span class="shop-badge">3 / 10</span>
-          </div>
-          <p class="shop-item-title"><em>Titre de l'œuvre</em></p>
-          <p class="shop-item-meta">Gravure sur bois, 2024<br>30 × 40 cm — papier Rives 250 g</p>
-          <div class="shop-item-footer">
-            <span class="shop-price">180 €</span>
-            <a class="shop-link" href="mailto:robinson.pc@outlook.fr?subject=Commande">Commander</a>
-          </div>
-        </div>
-
-        <div class="shop-item">
-          <div class="shop-img">
-            <img src="images/shop-gravure-2.jpg" alt="">
-            <span class="shop-badge">7 / 10</span>
-          </div>
-          <p class="shop-item-title"><em>Titre de l'œuvre</em></p>
-          <p class="shop-item-meta">Eau-forte, 2023<br>21 × 29,7 cm — papier Hahnemühle</p>
-          <div class="shop-item-footer">
-            <span class="shop-price">120 €</span>
-            <a class="shop-link" href="mailto:robinson.pc@outlook.fr?subject=Commande">Commander</a>
-          </div>
-        </div>
-
-        <div class="shop-item">
-          <div class="shop-img">
-            <img src="images/shop-gravure-3.jpg" alt="">
-            <span class="shop-badge">10 / 10</span>
-          </div>
-          <p class="shop-item-title"><em>Titre de l'œuvre</em></p>
-          <p class="shop-item-meta">Linogravure, 2023<br>50 × 70 cm — papier Japon</p>
-          <div class="shop-item-footer">
-            <span class="shop-price">240 €</span>
-            <a class="shop-link sold-out">Épuisé</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="shop-section">
-      <p class="shop-section-label"></p>
-      <div class="shop-grid">
-
-        <div class="shop-item">
-          <div class="shop-img">
-            <img src="images/shop-seri-1.jpg" alt="">
-            <span class="shop-badge">2 / 15</span>
-          </div>
-          <p class="shop-item-title"><em>Titre de l'œuvre</em></p>
-          <p class="shop-item-meta">Sérigraphie 2 couleurs, 2024<br>42 × 59,4 cm — offset 170 g</p>
-          <div class="shop-item-footer">
-            <span class="shop-price">90 €</span>
-            <a class="shop-link" href="mailto:robinson.pc@outlook.fr?subject=Commande">Commander</a>
-          </div>
-        </div>
-
-        <div class="shop-item">
-          <div class="shop-img">
-            <img src="images/shop-seri-2.jpg" alt="">
-            <span class="shop-badge">5 / 15</span>
-          </div>
-          <p class="shop-item-title"><em>Titre de l'œuvre</em></p>
-          <p class="shop-item-meta">Sérigraphie 4 couleurs, 2025<br>50 × 70 cm — Munken Lynx</p>
-          <div class="shop-item-footer">
-            <span class="shop-price">110 €</span>
-            <a class="shop-link" href="mailto:robinson.pc@outlook.fr?subject=Commande">Commander</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="shop-section">
-      <p class="shop-section-label"></p>
-      <div class="shop-grid">
-
-        <div class="shop-item">
-          <div class="shop-img">
-            <img src="images/shop-offset-1.jpg" alt="">
-            <span class="shop-badge">Édition ouverte</span>
-          </div>
-          <p class="shop-item-title"><em>Titre de la publication</em></p>
-          <p class="shop-item-meta">Impression offset, 2024<br>A5, 32 pages, couverture riso</p>
-          <div class="shop-item-footer">
-            <span class="shop-price">15 €</span>
-            <a class="shop-link" href="mailto:robinson.pc@outlook.fr?subject=Commande">Commander</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <p class="shop-note">
-      Expédition sous 5 à 7 jours. Emballage soigné, tubes rigides grands formats.
-      Œuvres envoyées sans cadre. Paiement par virement ou PayPal.<br>
-      <em>Shipping within 5–7 business days. Works sent unframed.</em>
-    </p>
+    <p class="shop-note" data-i18n="note">Expédition sous 5 à 7 jours. Emballage soigné, tubes rigides grands formats. Œuvres envoyées sans cadre. Paiement sécurisé par carte via Stripe.</p>
 
   </div>
 </main>
 
+<!-- FICHE ŒUVRE -->
+<div class="pdp" id="pdp" data-shop-only role="dialog" aria-modal="true" aria-labelledby="pdpTitle" aria-hidden="true">
+  <button class="pdp-close" id="pdpClose" type="button" data-i18n-label="close" aria-label="Fermer"></button>
+  <div class="pdp-media">
+    <div class="pdp-stage" id="pdpStage">
+      <button class="pdp-arrow pdp-prev" id="pdpPrev" type="button" hidden data-i18n-label="prevImg" aria-label="Image précédente"></button>
+      <img id="pdpImg" src="" alt="">
+      <button class="pdp-arrow pdp-next" id="pdpNext" type="button" hidden data-i18n-label="nextImg" aria-label="Image suivante"></button>
+    </div>
+    <p class="pdp-count" id="pdpCount" aria-live="polite"></p>
+    <div class="pdp-thumbs" id="pdpThumbs"></div>
+  </div>
+  <div class="pdp-info">
+    <div class="pdp-info-inner">
+      <h2 class="pdp-title" id="pdpTitle"></h2>
+      <p class="pdp-desc" id="pdpDesc"></p>
+      <p class="pdp-edition" id="pdpEdition"></p>
+      <p class="pdp-price" id="pdpPrice"></p>
+      <div class="pdp-action" id="pdpAction"></div>
+      <p class="pdp-error" id="pdpError" role="alert"></p>
+      <p class="pdp-note" id="pdpNote"></p>
+    </div>
+  </div>
+</div>
+
+<!-- PANIER -->
+<button class="cart-toggle" id="cartToggle" data-shop-only type="button" hidden data-i18n-label="openCart" aria-label="Ouvrir le panier"><span data-i18n="viewCart">Voir le panier</span> (<span id="cartCount">0</span>)</button>
+<div class="cart-backdrop" id="cartBackdrop" data-shop-only></div>
+<aside class="cart-drawer" id="cartDrawer" data-shop-only aria-hidden="true" aria-label="Panier">
+  <div class="cart-head">
+    <span class="cart-title" data-i18n="cart">Panier</span>
+    <button class="cart-close" id="cartClose" type="button" data-i18n-label="close" aria-label="Fermer"></button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total"><span data-i18n="total">Total</span><span id="cartTotal">0 €</span></div>
+    <p class="cart-note" data-i18n="cartNote">Les frais de livraison sont ajoutés à l'étape suivante. Paiement sécurisé par Stripe.</p>
+    <p class="cart-error" id="cartError" role="alert"></p>
+    <button class="cart-checkout" id="cartCheckout" type="button" disabled data-i18n="pay">Payer</button>
+    <button class="cart-continue" id="cartContinue" type="button" data-i18n="continueShopping">Continuer mes achats</button>
+  </div>
+</aside>
+
+<!-- ÉTAT FERMÉ : affiché par shop.js uniquement si SHOP_OPEN = false (products.js) -->
+<template id="shopClosedTpl">
+  <div class="shop-closed"><img alt="Coming soon"></div>
+</template>
+
 <div class="custom-cursor" id="cursor"></div>
 
-<script>
-const toggle = document.getElementById('menuToggle');
-const nav    = document.getElementById('mobileNav');
-
-function closeMenu() {
-  toggle.classList.remove('open');
-  nav.classList.remove('open');
-  nav.setAttribute('aria-hidden', 'true');
-  toggle.setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
-}
-
-toggle.addEventListener('click', () => {
-  const open = !nav.classList.contains('open');
-  if (open) {
-    toggle.classList.add('open');
-    nav.classList.add('open');
-    nav.setAttribute('aria-hidden', 'false');
-    toggle.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-  } else {
-    closeMenu();
-  }
-});
-
-nav.addEventListener('click', e => { if (e.target.tagName === 'A') closeMenu(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-
-const cur = document.getElementById('cursor');
-if (cur && window.matchMedia('(pointer: fine)').matches) {
-  document.addEventListener('mousemove', e => {
-    cur.style.left = e.clientX + 'px';
-    cur.style.top  = e.clientY + 'px';
-  });
-}
-</script>
+<script src="site.js"></script>
+<script src="products.js"></script>
+<script src="i18n.js"></script>
+<script src="shop.js"></script>
 <script src="cursor.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,19 @@
+# Optionnel : seulement si tu déploies en ligne de commande (npx wrangler deploy)
+name = "rpc-shop-checkout"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+[vars]
+SITE_URL = "https://robizic.github.io/Robinson-Plesse-Costa"
+ALLOWED_ORIGIN = "https://robizic.github.io"
+# SHIPPING_RATE_ID = "shr_..."
+
+# Base de données du stock (créée avec : npx wrangler d1 create rpc-shop-stock)
+[[d1_databases]]
+binding = "DB"
+database_name = "rpc-shop-stock"
+database_id = "REMPLACE_PAR_L_ID_AFFICHE_PAR_WRANGLER"
+
+# Les secrets ne vont JAMAIS ici :
+#   npx wrangler secret put STRIPE_SECRET_KEY
+#   npx wrangler secret put STRIPE_WEBHOOK_SECRET

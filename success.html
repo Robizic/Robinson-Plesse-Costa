@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title data-i18n="successDoc">Commande confirmée — Robinson Plesse-Costa</title>
+<link rel="icon" href="images/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand">ROBINSON PLESSE-COSTA</a>
+  <nav class="header-right">
+    <a href="shop.html">SHOP</a>
+    <a href="index.html#about">ABOUT</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <a href="index.html">HOME</a>
+  <a href="shop.html">SHOP</a>
+  <a href="index.html#about">ABOUT</a>
+</nav>
+
+<main>
+  <div class="shop-wrap">
+    <div class="shop-head">
+      <div class="lang-switch">
+        <button type="button" class="lang-opt" data-setlang="fr">FR</button>
+        <button type="button" class="lang-toggle" id="langSwitch" role="switch" aria-checked="false" data-i18n-label="switchLabel"><span class="lang-knob"></span></button>
+        <button type="button" class="lang-opt" data-setlang="en">EN</button>
+      </div>
+      <h2 data-i18n="successTitle">Commande confirmée</h2>
+      <p data-i18n-html="successText">Merci. Votre paiement a bien été reçu.</p>
+    </div>
+    <p class="shop-note" style="border-top:0;padding-top:0;margin-top:0">
+      <a class="shop-link" href="shop.html" data-i18n="back">← Retour au shop</a>
+    </p>
+  </div>
+</main>
+
+<div class="custom-cursor" id="cursor"></div>
+
+<script src="products.js"></script>
+<script src="i18n.js"></script>
+<script>
+// Paiement terminé : on vide le panier et la session de paiement en cours
+try {
+  const cfg = window.SHOP_CONFIG || {};
+  localStorage.removeItem(cfg.cartKey    || 'rpc_cart_v1');
+  localStorage.removeItem(cfg.pendingKey || 'rpc_pending_session');
+} catch (e) {}
+</script>
+<script src="site.js"></script>
+<script src="cursor.js" defer></script>
+</body>
+</html>
