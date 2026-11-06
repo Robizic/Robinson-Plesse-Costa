@@ -298,23 +298,54 @@ collective.</span>
           </figcaption>
         </figure>
 
-        <figure class="slide">
-  <div class="video-wrapper">
-<iframe 
-  src="https://www.youtube-nocookie.com/embed/NDZFAhTejGE?start=414&controls=0&modestbranding=1&rel=0"
-  title="Normal Again video"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-  referrerpolicy="strict-origin-when-cross-origin"
-  allowfullscreen>
-</iframe>
+        
+<figure class="slide">
+  <div class="video-wrapper" data-video-id="NDZFAhTejGE" data-start="414">
+
+    <div class="video-frame">
+      <div id="youtube-normal-again" class="video-player"></div>
+
+      <button class="video-hit" type="button"
+        aria-label="Lire ou mettre en pause la vidéo">
+      </button>
+
+      <button class="video-bigplay" type="button"
+        aria-label="Lire la vidéo">
+        <span></span>
+      </button>
+    </div>
+
+    <div class="video-controls">
+
+      <button class="vc-btn vc-play" type="button"
+        aria-label="Lire">
+        <span class="play-icon">▶</span>
+      </button>
+
+      <span class="vc-time">00:00</span>
+
+      <input class="vc-seek" type="range"
+        min="0" max="1000" value="0"
+        step="1" aria-label="Position dans la vidéo">
+
+      <span class="vc-dur">00:00</span>
+
+      <button class="vc-btn vc-fullscreen" type="button"
+        aria-label="Plein écran">
+        ⛶
+      </button>
+
+    </div>
+
   </div>
+
   <figcaption>
     <span class="cap-title"><em>Normal Again</em>, 2024</span>
     <span class="cap-info">Vidéo complète</span>
     <span class="cap-info">Paris</span>
   </figcaption>
 </figure>
+
 
       </div>
       <div class="slider-counter"><span class="cur">1</span> / <span class="tot">1</span></div>
@@ -1038,8 +1069,12 @@ document.querySelectorAll('.project-slider').forEach(slider => {
   }
 
   /* Clic sur la moitié gauche = prev, moitié droite = next */
-  slider.addEventListener('click', e => {
-    if (total <= 1) return;
+slider.addEventListener('click', e => {
+
+  // Ne jamais changer de slide quand on utilise le lecteur vidéo
+  if (e.target.closest('.video-wrapper')) return;
+
+  if (total <= 1) return;
     const rect = slider.getBoundingClientRect();
     const relX = e.clientX - rect.left;
     if (relX < rect.width / 2) go(idx - 1);
@@ -1048,13 +1083,22 @@ document.querySelectorAll('.project-slider').forEach(slider => {
 
   /* Swipe tactile */
   let startX = 0;
-  slider.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
-  slider.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
-  }, { passive: true });
+slider.addEventListener('touchstart', e => {
+
+  if (e.target.closest('.video-wrapper')) return;
+
+  startX = e.touches[0].clientX;
+
+}, { passive: true });
+slider.addEventListener('touchend', e => {
+
+  if (e.target.closest('.video-wrapper')) return;
+
+  const dx = e.changedTouches[0].clientX - startX;
+
+  if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+
+}, { passive: true });
 
   /* Clavier */
   slider.setAttribute('tabindex', '0');
@@ -1140,7 +1184,298 @@ document.querySelectorAll('.project-slider').forEach(slider => {
 /* NB : la traînée pixel et les explosions au clic sont gérées
    par particles.js (chargé ci-dessous). L'ancien bloc inline
    "TRAÎNÉE PIXEL" a été supprimé : il masquait le canvas sur mobile. */
+
+
+/* =====================================================
+   YOUTUBE PLAYER — API + COMMANDES PERSONNALISÉES
+===================================================== */
+
+(function () {
+
+  const wrapper = document.querySelector('.video-wrapper');
+  if (!wrapper) return;
+
+  const videoId = wrapper.dataset.videoId;
+  const startAt = Number(wrapper.dataset.start) || 0;
+
+  const playBtn = wrapper.querySelector('.vc-play');
+  const playIcon = wrapper.querySelector('.play-icon');
+  const bigPlay = wrapper.querySelector('.video-bigplay');
+  const hit = wrapper.querySelector('.video-hit');
+  const seek = wrapper.querySelector('.vc-seek');
+  const currentTime = wrapper.querySelector('.vc-time');
+  const durationTime = wrapper.querySelector('.vc-dur');
+  const fullscreenBtn = wrapper.querySelector('.vc-fullscreen');
+
+  let player;
+  let duration = 0;
+  let seeking = false;
+  let pseudoFullscreen = false;
+
+  function formatTime(seconds) {
+    if (!Number.isFinite(seconds)) return '00:00';
+
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
+
+    return String(min).padStart(2, '0') + ':' +
+           String(sec).padStart(2, '0');
+  }
+
+  function updateProgress() {
+    if (!player || !duration) return;
+
+    const time = player.getCurrentTime();
+
+    if (!seeking) {
+      const value = Math.min(1000, time / duration * 1000);
+
+      seek.value = value;
+      seek.style.setProperty('--progress', value / 10 + '%');
+    }
+
+    currentTime.textContent = formatTime(time);
+  }
+
+  function updateState(state) {
+
+    const playing = state === YT.PlayerState.PLAYING;
+
+    wrapper.classList.toggle('is-playing', playing);
+
+    playIcon.textContent = playing ? 'Ⅱ' : '▶';
+
+    playBtn.setAttribute(
+      'aria-label',
+      playing ? 'Mettre en pause' : 'Lire'
+    );
+
+  }
+
+  function togglePlayback() {
+    if (!player) return;
+
+    if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+      player.pauseVideo();
+    } else {
+      player.playVideo();
+    }
+  }
+
+  function initPlayer() {
+
+    player = new YT.Player('youtube-normal-again', {
+
+      videoId: videoId,
+
+      playerVars: {
+        start: startAt,
+        controls: 0,
+        disablekb: 1,
+        modestbranding: 1,
+        rel: 0,
+        playsinline: 1,
+        iv_load_policy: 3
+      },
+
+      events: {
+
+        onReady: function (event) {
+
+          duration = event.target.getDuration();
+
+          durationTime.textContent = formatTime(duration);
+
+          event.target.seekTo(startAt, true);
+
+          updateProgress();
+
+        },
+
+        onStateChange: function (event) {
+
+          updateState(event.data);
+
+          if (event.data === YT.PlayerState.ENDED) {
+            playIcon.textContent = '▶';
+          }
+
+        }
+
+      }
+
+    });
+
+  }
+
+  // CHARGEMENT API YOUTUBE
+
+  function loadYouTubeAPI() {
+
+    if (window.YT && window.YT.Player) {
+      initPlayer();
+      return;
+    }
+
+    window.onYouTubeIframeAPIReady = initPlayer;
+
+    if (!document.querySelector(
+      'script[src="https://www.youtube.com/iframe_api"]'
+    )) {
+
+      const script = document.createElement('script');
+
+      script.src = 'https://www.youtube.com/iframe_api';
+
+      document.head.appendChild(script);
+
+    }
+
+  }
+
+  loadYouTubeAPI();
+
+  // LECTURE / PAUSE
+
+  playBtn.addEventListener('click', togglePlayback);
+  bigPlay.addEventListener('click', togglePlayback);
+  hit.addEventListener('click', togglePlayback);
+
+  // TIMELINE
+
+  seek.addEventListener('input', function () {
+
+    seeking = true;
+
+    const value = Number(seek.value);
+    const time = duration * value / 1000;
+
+    currentTime.textContent = formatTime(time);
+
+    seek.style.setProperty(
+      '--progress',
+      value / 10 + '%'
+    );
+
+  });
+
+  seek.addEventListener('change', function () {
+
+    if (player && duration) {
+      player.seekTo(duration * Number(seek.value) / 1000, true);
+    }
+
+    seeking = false;
+
+  });
+
+  // SYNCHRONISATION DU TEMPS
+
+  setInterval(updateProgress, 250);
+
+
+/* ==========================================
+   PLEIN ECRAN IMMERSIF
+========================================== */
+
+function enterPseudoFullscreen() {
+
+  pseudoFullscreen = true;
+
+  wrapper.classList.add('is-pseudo-fs');
+
+  document.body.classList.add('cinema-mode');
+
+  fullscreenBtn.textContent = '✕';
+
+  fullscreenBtn.setAttribute(
+    'aria-label',
+    'Quitter le mode cinéma'
+  );
+
+}
+
+function exitPseudoFullscreen() {
+
+  pseudoFullscreen = false;
+
+  wrapper.classList.remove('is-pseudo-fs');
+
+  document.body.classList.remove('cinema-mode');
+
+  fullscreenBtn.textContent = '⛶';
+
+  fullscreenBtn.setAttribute(
+    'aria-label',
+    'Activer le mode cinéma'
+  );
+
+}
+
+fullscreenBtn.addEventListener('click', async function () {
+
+  if (pseudoFullscreen) {
+
+    exitPseudoFullscreen();
+
+    return;
+
+  }
+
+  // Plein écran natif si disponible
+  if (wrapper.requestFullscreen) {
+
+    try {
+
+      await wrapper.requestFullscreen();
+
+      return;
+
+    } catch (error) {
+
+      // Sinon, mode cinéma CSS
+    }
+
+  }
+
+  enterPseudoFullscreen();
+
+});
+
+document.addEventListener('fullscreenchange', function () {
+
+  if (document.fullscreenElement === wrapper) {
+
+    wrapper.classList.add('is-pseudo-fs');
+
+    fullscreenBtn.textContent = '✕';
+
+  } else if (!pseudoFullscreen) {
+
+    wrapper.classList.remove('is-pseudo-fs');
+
+    fullscreenBtn.textContent = '⛶';
+
+  }
+
+});
+
+// Sortie avec Échap
+document.addEventListener('keydown', function (event) {
+
+  if (event.key === 'Escape' && pseudoFullscreen) {
+
+    exitPseudoFullscreen();
+
+  }
+
+});
+
+
+})();
+
 </script>
+
 <script src="particles.js" defer></script>
 <script src="cursor.js" defer></script>
 </body>
