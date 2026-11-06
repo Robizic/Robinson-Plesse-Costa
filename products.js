@@ -14,14 +14,14 @@
            l'image « coming soon » (voir comingSoonImage plus bas).
            Aucun produit, aucun bouton d'achat, aucun panier.
 ============================================================ */
-const SHOP_OPEN = true;
+const SHOP_OPEN = false;
 
 
 window.SHOP_CONFIG = {
   shopOpen: SHOP_OPEN,
 
   // Image affichée en plein écran quand le Shop est fermé
-  comingSoonImage: "images/coming-soon.jpg",
+  comingSoonImage: "images/coming-soon.png",
 
   // URL de ton Cloudflare Worker (voir guide) + /checkout
   checkoutEndpoint: "https://XXXX.workers.dev/checkout",

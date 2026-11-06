@@ -1,3 +1,4 @@
+
 /* ============================================================
    site.js — comportements communs aux pages Shop et Confirmation
    · menu hamburger mobile
@@ -20,8 +21,18 @@
   }
 
   toggle.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
-  nav.addEventListener('click', e => { if (e.target.tagName === 'A') setMenu(false); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+  // Fermeture sur clic dans le fond du menu
+  nav.addEventListener('click', e => {
+    if (!e.target.closest('a')) {
+      setMenu(false);
+    }
+  });
+
+  // Fermeture sur Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') setMenu(false);
+  });
 
   /* ── Curseur custom : suit la souris (écrans à pointeur précis seulement) ── */
   const cursor = document.getElementById('cursor');

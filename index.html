@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Robinson Plesse-Costa — Artiste en image imprimée & technologies numériques</title>
+<title>Robinson Plesse-Costa</title>
 <meta name="description" content="Robinson Plesse-Costa, artiste basé à Paris, explore l'image imprimée et les technologies numériques.">
 <meta name="author" content="Robinson Plesse-Costa">
 <meta name="robots" content="index, follow">
@@ -1009,7 +1009,7 @@ Dernier Cri.</span>
 
   // Fermeture sur clic dans le menu
 nav.addEventListener('click', e => {
-  if (e.target === nav || e.target.tagName === 'A') {
+  if (!e.target.closest('a')) {
     closeMenu();
   }
 });
