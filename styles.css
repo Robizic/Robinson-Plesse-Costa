@@ -1415,3 +1415,47 @@ body:has(.video-wrapper.is-pseudo-fs) {
 
 }
 
+/* ==========================================
+   TIMELINE — TOUCH FIX
+========================================== */
+
+.vc-seek {
+
+  position: relative;
+
+  z-index: 30;
+
+  pointer-events: auto !important;
+
+  touch-action: none !important;
+
+  cursor: pointer;
+
+  -webkit-appearance: none;
+  appearance: none;
+
+}
+
+/* Empêcher les gestes de remonter vers la galerie */
+
+.video-controls,
+.video-controls * {
+
+  touch-action: pan-y;
+
+}
+
+.vc-seek {
+
+  touch-action: none !important;
+
+}
+
+.video-controls {
+
+  position: relative;
+  z-index: 25;
+
+}
+
+

@@ -1210,7 +1210,7 @@ document.querySelectorAll('.project-slider').forEach(slider => {
   let player;
   let duration = 0;
   let seeking = false;
-  let pseudoFullscreen = false;
+  let pseudoullscreen = false;
 
   function formatTime(seconds) {
     if (!Number.isFinite(seconds)) return '00:00';
@@ -1374,14 +1374,34 @@ document.querySelectorAll('.project-slider').forEach(slider => {
   setInterval(updateProgress, 250);
 
 
+
 /* ==========================================
-   PLEIN ECRAN IMMERSIF
+   MODE IMMERSIF RESPONSIVE — FIX
 ========================================== */
+
+let pseudoFullscreen = false;
+let videoPlaceholder = null;
+let originalParent = null;
 
 function enterPseudoFullscreen() {
 
+  if (pseudoFullscreen) return;
+
   pseudoFullscreen = true;
 
+  // Mémoriser l'emplacement original
+  originalParent = wrapper.parentNode;
+
+  videoPlaceholder = document.createComment(
+    'video-original-position'
+  );
+
+  originalParent.insertBefore(videoPlaceholder, wrapper);
+
+  // Sortir le lecteur de tous les conteneurs
+  document.body.appendChild(wrapper);
+
+  // Activer le mode cinéma
   wrapper.classList.add('is-pseudo-fs');
 
   document.body.classList.add('cinema-mode');
@@ -1397,7 +1417,21 @@ function enterPseudoFullscreen() {
 
 function exitPseudoFullscreen() {
 
+  if (!pseudoFullscreen) return;
+
   pseudoFullscreen = false;
+
+  // Restaurer exactement la position initiale
+  if (videoPlaceholder && videoPlaceholder.parentNode) {
+
+    videoPlaceholder.parentNode.insertBefore(
+      wrapper,
+      videoPlaceholder
+    );
+
+    videoPlaceholder.remove();
+
+  }
 
   wrapper.classList.remove('is-pseudo-fs');
 
@@ -1410,52 +1444,38 @@ function exitPseudoFullscreen() {
     'Activer le mode cinéma'
   );
 
+  videoPlaceholder = null;
+  originalParent = null;
+
 }
 
-fullscreenBtn.addEventListener('click', async function () {
+fullscreenBtn.addEventListener('click', function(e) {
+
+  e.preventDefault();
+  e.stopPropagation();
 
   if (pseudoFullscreen) {
-
     exitPseudoFullscreen();
-
-    return;
-
+  } else {
+    enterPseudoFullscreen();
   }
-
-  // Plein écran natif si disponible
-  if (wrapper.requestFullscreen) {
-
-    try {
-
-      await wrapper.requestFullscreen();
-
-      return;
-
-    } catch (error) {
-
-      // Sinon, mode cinéma CSS
-    }
-
-  }
-
-  enterPseudoFullscreen();
 
 });
 
-document.addEventListener('fullscreenchange', function () {
+// Échap sur ordinateur
+document.addEventListener('keydown', function(e) {
 
-  if (document.fullscreenElement === wrapper) {
+  if (e.key === 'Escape' && pseudoFullscreen) {
+    exitPseudoFullscreen();
+  }
 
-    wrapper.classList.add('is-pseudo-fs');
+});
 
-    fullscreenBtn.textContent = '✕';
+// Sécurité : restauration si la page est masquée
+document.addEventListener('visibilitychange', function() {
 
-  } else if (!pseudoFullscreen) {
-
-    wrapper.classList.remove('is-pseudo-fs');
-
-    fullscreenBtn.textContent = '⛶';
-
+  if (document.visibilityState === 'hidden' && pseudoFullscreen) {
+    exitPseudoFullscreen();
   }
 
 });
