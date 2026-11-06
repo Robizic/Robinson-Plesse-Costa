@@ -1022,3 +1022,10 @@ a    { color: inherit; text-decoration: none; }
   .lang-toggle, .lang-knob, .pdp-stage img,
   .shop-img img, .pdp, .cart-drawer, .cart-backdrop { transition: none; }
 }
+
+/* HEADER MOBILE — suppression du dégradé */
+@media (max-width: 768px) {
+  .site-header {
+    background: transparent;
+  }
+}
