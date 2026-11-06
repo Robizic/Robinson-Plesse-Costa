@@ -15,6 +15,9 @@
     return;
   }
 
+  /* Force l'affichage : empêche un ancien script de masquer le canvas sur mobile */
+  canvas.style.display = 'block';
+
   const isFine = window.matchMedia('(pointer: fine)').matches; // souris = desktop
 
   /* ==========================================================
