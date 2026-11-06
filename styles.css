@@ -459,6 +459,15 @@ a    { color: inherit; text-decoration: none; }
   object-position: center;
 }
 
+@media (max-width: 768px) {
+  .shop-closed { overflow: hidden; }
+
+  .shop-closed img {
+    object-fit: contain;
+    transform: scale(1.5);   /* 1.2 = discret · 1.5 = très grand */
+  }
+}
+
 /* ── Interactions : curseur main + focus clavier visible ── */
 .shop-link, .shop-img, .shop-item-name, .cart-toggle,
 .cart-close, .cart-remove, .cart-qty-btn, .cart-checkout, .cart-continue,
